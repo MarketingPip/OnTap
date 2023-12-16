@@ -609,7 +609,7 @@ function importMenu() {
                       
                         beerMenu = importedData;
 			  if(importedData.programName != "BeerKiosk" && !importedData.kioskMenu){
-              throw new Error("Invalid file or corrupt menu file.")            
+              throw new Error("Invalid file or corrupt menu file. Please check the file format.")            
                         }  
 			   if(importedData.kioskMenu.beers.length === 0){
               throw new Error("No items in menu file to render...")            
@@ -617,8 +617,8 @@ function importMenu() {
 			    
                         renderBeerMenu(); // renders the main menu
                     } catch (error) {
-                        console.error('Error importing JSON:', error.message);
-                        alert('Invalid JSON file. Please check the file format.');
+                     //   console.error('Error importing JSON:', error.message);
+                        alert(error.message);
                     }
                 };
 
@@ -723,8 +723,7 @@ function getLocalizedTime() {
   return formattedTime;
 }
 
-// Example usage:
-const localizedTime = getLocalizedTime();
+
 //console.log(`Current localized time: ${localizedTime}`);
 	
 // Add items to marquee
@@ -748,10 +747,17 @@ if(beerMenu.options.marqueeSettings.strings.length != 0){
 }
 	  
   if(beerMenu.options.marqueeSettings.clock){
-addQuote(localizedTime())
+addQuote("", "clockMarquee")
+logLocalizedTime()
+setInterval(logLocalizedTime, 60000);	  
   }	  
 
+function logLocalizedTime(){
+document.querySelector("#clockMarquee").innerHTML = getLocalizedTime()
+}
+	  
 
+	  
   //addQuote('', "jokeMarquee");
     
     // setInterval(updateMarqueeWithJoke, 3600000); // 3600000 milliseconds = 1 hour
