@@ -723,11 +723,11 @@ document.addEventListener('keydown', function (event) {
 
 function RenderMenuOptions(){
 
-const marqueeEnabled = beerMenu.options.marqueeEnabled
+const marqueeEnabled = beerMenu.options?.marqueeEnabled
 
-const menuTitle = beerMenu.kioskMenu.title
+const menuTitle = beerMenu.kioskMenu?.title
 
-const MenuTitle_Enabled = beerMenu.options.titleEnabled
+const MenuTitle_Enabled = beerMenu.options?.titleEnabled
 
 if(!MenuTitle_Enabled || !menuTitle){
  document.querySelector("#MenuTitle").style.display = "none"
