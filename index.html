@@ -336,7 +336,11 @@
 <!---- Tutorial Menu --->
 <div id="exampleWrapper" class="hide-display overflow-x-auto transition-transform duration-300 transform translate-y-full fixed inset-0 z-50 bg-gray-800 bg-opacity-50 scrollbars" tabindex="-1">
   <div>
-    <button onclick="closeSlide()" class="absolute top-0 right-0 p-2 cursor-pointer focus:bg-accent focus:text-accent-foreground">Close</button>
+    <button onclick="closeSlide()" class="absolute top-0 right-0 p-2 cursor-pointer focus:bg-accent focus:text-accent-foreground">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+            </svg>
+   </button>	  
     <div class="text-center uppercase bg-gray-50 dark:bg-gray-800 dark:text-gray-400 px-0 py-2">Tutorial</div>
     <div class="tutorial bg-gray-100 p-8">
      <header class="text-center mb-8">
