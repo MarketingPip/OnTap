@@ -311,11 +311,8 @@
  
   <div class="marquee-wrapper">   
         <div class="marquee">
-      <!-- Add your beer-related quotes here -->
-      <span>Quote 1</span>
-      <span>Quote 2</span>
-      <span>Quote 3</span>
-      <!-- Add more quotes as needed -->
+      <!--Dynamic items added here -->
+
     </div>
     </div>
     
@@ -717,7 +714,7 @@ document.querySelector("#MenuTitle").textContent = menuTitle
 
 function getLocalizedTime() {
   const userLocale = navigator.language || 'en-US'; // Get user's locale or default to 'en-US'
-  const options = { hour: 'numeric', minute: 'numeric', second: 'numeric', hour12: true };
+  const options = { hour: 'numeric', minute: 'numeric', hour12: true };
   const formattedTime = new Date().toLocaleTimeString(userLocale, options);
 
   return formattedTime;
