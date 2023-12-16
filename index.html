@@ -714,6 +714,18 @@ if(!MenuTitle_Enabled){
 } else{
 document.querySelector("#MenuTitle").textContent = menuTitle
 }
+
+function getLocalizedTime() {
+  const userLocale = navigator.language || 'en-US'; // Get user's locale or default to 'en-US'
+  const options = { hour: 'numeric', minute: 'numeric', second: 'numeric', hour12: true };
+  const formattedTime = new Date().toLocaleTimeString(userLocale, options);
+
+  return formattedTime;
+}
+
+// Example usage:
+const localizedTime = getLocalizedTime();
+//console.log(`Current localized time: ${localizedTime}`);
 	
 // Add items to marquee
  function addQuote(quoteText, id=null) {
@@ -729,7 +741,15 @@ document.querySelector("#MenuTitle").textContent = menuTitle
   
   if(marqueeEnabled){
   // Example usage:
-  addQuote('New Quote');
+  
+  //addQuote('New Quote');
+if(beerMenu.options.marqueeSettings.strings.length != 0){
+ beerMenu.options.marqueeSettings.strings.map(addQuote);	
+}
+	  
+  if(beerMenu.options.marqueeSettings.clock){
+addQuote(localizedTime())
+  }	  
 
 
   //addQuote('', "jokeMarquee");
@@ -740,7 +760,7 @@ document.querySelector("#MenuTitle").textContent = menuTitle
   //updateMarqueeWithJoke();
   }
 
-  if(!marqueeEnabled){
+  if(!marqueeEnabled || beerMenu.options.marqueeSettings.strings.length === 0){
     const marquee = document.querySelector('.marquee-wrapper');
     marquee.style.display = "none"
   }
