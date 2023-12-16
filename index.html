@@ -319,7 +319,7 @@
     </div>
     </div>
     
-    <h1 class="text-4xl font-bold mb-8">Currently on Tap</h1>
+    <h1 class="text-4xl font-bold mb-8" id="menuTitle">Currently on Tap</h1>
     <!---   <div id="beerList" class="flex flex-wrap -mx-4 mb-4" style="overflow-x:hidden;"> --->
     <div id="beerList" class="flex flex-wrap -mx-4" style="overflow-x:hidden;">
       <!-- Beer items will be added here dynamically -->
@@ -634,8 +634,8 @@ function importMenu() {
          
             const beerList = document.getElementById('beerList');
             beerList.innerHTML = '';
-
-            beerMenu.forEach((beer, index) => {
+            const beers = beerMenu.kioskMenu.beers
+            beers.forEach((beer, index) => {
                 const beerItem = document.createElement('div');
                 beerItem.className = 'w-full md:w-1/2 lg:w-1/3 xl:w-1/4 px-4 mb-4';
 
@@ -702,8 +702,18 @@ document.addEventListener('keydown', function (event) {
 
 
 
-let marqueeEnabled = true
+const marqueeEnabled = beerMenu.options.marqueeEnabled
 
+const menuTitle = beerMenu.kioskMenu.menuTitle
+
+const MenuTitle_Enabled = beerMenu.options.titleEnabled
+
+if(!MenuTitle_Enabled){
+ document.querySelector("#MenuTitle").style.display = "none"
+} else{
+document.querySelector("#MenuTitle").textContent = beerMenu.kioskMenu.menuTitle
+}
+	
 // Add items to marquee
  function addQuote(quoteText, id=null) {
     const marquee = document.querySelector('.marquee');
