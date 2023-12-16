@@ -334,7 +334,7 @@
   
   
 <!---- Tutorial Menu --->
-<div id="exampleWrapper" class="overflow-x-auto transition-transform duration-300 transform translate-y-full fixed inset-0 z-50 bg-gray-800 bg-opacity-50 scrollbars" tabindex="-1">
+<div id="exampleWrapper" class="hide-display overflow-x-auto transition-transform duration-300 transform translate-y-full fixed inset-0 z-50 bg-gray-800 bg-opacity-50 scrollbars" tabindex="-1">
   <div>
     <button onclick="closeSlide()" class="absolute top-0 right-0 p-2 cursor-pointer focus:bg-accent focus:text-accent-foreground">Close</button>
     <div class="text-center uppercase bg-gray-50 dark:bg-gray-800 dark:text-gray-400 px-0 py-2">Tutorial</div>
@@ -874,6 +874,20 @@ function parseUrlQuery() {
     const exampleWrapper = document.getElementById('exampleWrapper');
     const body = document.body;
 
+     const removeHider = async () => {
+  await delay(300);
+   exampleWrapper.classList.remove("hide-display")
+};	  
+
+	 removeHider() 
+
+const addHider = async () => {
+  await delay(300);
+   exampleWrapper.classList.add("hide-display")
+};	  	  
+
+     
+	  
     toggleSlideOpen = true
     
     exampleWrapper.style.visibility = "visible" ;
@@ -891,6 +905,8 @@ function parseUrlQuery() {
 
         // Add the 'hidden' class after the transition is complete
        exampleWrapper.classList.remove('hidden');
+       addHider()
+	     
     }
     
     hideOverlay()
