@@ -606,15 +606,15 @@ function importMenu() {
                         const importedData = JSON.parse(e.target.result);
                         // Validate the JSON schema here if needed
 
-                        // Update the beer menu
-                       document.querySelector('.main-menu').style.display = "none"
+                      
                         beerMenu = importedData;
 			  if(importedData.programName != "BeerKiosk" && !importedData.kioskMenu){
               throw new Error("Invalid file or corrupt menu file.")            
                         }  
 			   if(importedData.kioskMenu.beers.length === 0){
               throw new Error("No items in menu file to render...")            
-                        }     
+                        }
+			    
                         renderBeerMenu();
                     } catch (error) {
                         console.error('Error importing JSON:', error.message);
@@ -651,6 +651,9 @@ function importMenu() {
 
                 beerList.appendChild(beerItem);
             });
+
+             // Update the beer menu
+         document.querySelector('.main-menu').style.display = "none"		
            //displayMenu.classList.remove("hidden")
           displayMenu.classList.remove("hide-display")
            displayMenu.style.opacity = '1';
