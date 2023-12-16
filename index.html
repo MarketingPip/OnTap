@@ -609,6 +609,12 @@ function importMenu() {
                         // Update the beer menu
                        document.querySelector('.main-menu').style.display = "none"
                         beerMenu = importedData;
+			  if(importedData.programName != "BeerKiosk" && !importedData.kioskMenu){
+              throw new Error("Invalid file or corrupt menu file.")            
+                        }  
+			   if(importedData.kioskMenu.beers.length === 0){
+              throw new Error("No items in menu file to render...")            
+                        }     
                         renderBeerMenu();
                     } catch (error) {
                         console.error('Error importing JSON:', error.message);
