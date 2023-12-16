@@ -683,13 +683,15 @@ function importMenu() {
           }catch(err){
             console.log(err.message)
           }
-          // Make sure display menu it at top of screen.
+
+          registerRefresherOnEscapeKey()
+         RenderMenuOptions() // render menu options such as title, marquee etc.... 	
+
+                  // Make sure display menu it at top of screen.
           displayMenu.scrollTo({
                 top: 0,
                 behavior: 'smooth'
-            });
-          registerRefresherOnEscapeKey()
-         RenderMenuOptions() // render menu options such as title, marquee etc.... 		
+            });		
      //   
         }
 
@@ -769,11 +771,14 @@ if(beerMenu.options.marqueeSettings.strings.length != 0){
   if(beerMenu.options.marqueeSettings.clock){
 addQuote("", "clockMarquee")
 logLocalizedTime()
-setInterval(logLocalizedTime, 60000);	  
+//setInterval(logLocalizedTime, 60000);	  
+	  logLocalizedTime()
   }	  
 
 function logLocalizedTime(){
 document.querySelector("#clockMarquee").innerHTML = getLocalizedTime()
+	  // Request the next animation frame for smoother updates
+  requestAnimationFrame(logLocalizedTime);
 }
 	  
 
