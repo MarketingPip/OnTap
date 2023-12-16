@@ -174,7 +174,259 @@
 }
   
     </style>
- <script>
+</head>
+<body class="bg-gray-100 p-8 page-loader-active"> 
+
+  <!-- Page Loader -->
+    <div id="page-loader"
+        class="fixed top-0 left-0 w-full h-full bg-white flex items-center justify-center opacity-100 transition-opacity duration-300 z-50 ">
+        <svg version="1.1" id="Ebene_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 width="100%" height="500px" viewBox="0 0 560 960" style="enable-background:new 0 0 560 960;" xml:space="preserve">
+
+<path class="beer" d="M147,386.582c0,0,0.833,235.875,0.833,257.209S168.333,668,172.667,668s145.667,0,154.333,0s17-11,17-28
+	s0-253,0-253L147,386.582z"/>
+<path class="schaum" d="M344,387l-132-0.418V422c0,0-2,16.75-20.75,16.75S171,428.25,171,423.5c0-5.25,0-36.5,0-36.5
+	s-12.25-0.334-24-0.418c-19.625-2.457-23-25.332-3.625-38.832c-7.5-30.25,64.063-94.25,107.896-16.418
+	c15.333-15.5,39.781-19,49.115,14.168c3.666-24.834,10.437-43.25,42.974-43.25c28.668,0,41.457,27.082,41.457,41.422
+	C384.814,375,356.732,387,346.215,387H344z"/>
+<path class="handle" d="M348,597c0,0,27.75,0,53,0c14,0,20.5-16.5,20.5-25.5c0-4.25,0.355-99,0.355-113.75S407.75,437,399.25,437
+	S348,437,348,437"/>
+<path class="outline" d="M147,385.481c0,0,0.833,235.875,0.833,257.209s20.5,24.209,24.834,24.209s145.667,0,154.333,0s17-11,17-28
+	s0-48,0-48v-4v-201l-132-0.418v35.418c0,0-2,16.75-20.75,16.75s-20.25-10.5-20.25-15.25c0-5.25,0-36.5,0-36.5
+	S158.75,385.565,147,385.481c-19.625-2.457-23-25.332-3.625-38.832c-7.5-30.25,64.063-94.25,107.896-16.418
+	c15.332-15.5,39.78-19,49.114,14.168c3.666-24.834,10.437-43.25,42.974-43.25c28.668,0,41.457,27.082,41.457,41.422
+	c-0.002,31.328-28.084,43.328-38.602,43.328"/>
+<line class="lines" x1="196" y1="480" x2="196" y2="562"/>
+<line class="lines" x1="250" y1="480" x2="250" y2="562"/>
+<line class="lines" x1="304" y1="480" x2="304" y2="562"/>
+	
+</svg>
+    </div>
+  
+    <div class="max-w-4xl mx-auto ">
+    <!-- Go Back arrow --> 
+    <a href="../index.html" class="static top-0 left-0 p-4  md:absolute md:p-4 md:py-6">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="h-6 w-6">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+        </svg>
+    </a>
+
+        <h1 class="text-4xl font-bold mb-8">What's on Tap Editor</h1>
+   <!-- Beer items will be added here dynamically -->
+    <div class="w-full text-center" id="emptyMessage" style="display: none;">
+        <p class="text-gray-500 text-lg font-bold">Menu is empty</p>
+    </div>
+        <div id="beerList" class="flex flex-wrap -mx-4 mb-4">
+            <!-- Beer items will be added here dynamically -->
+        </div>
+
+        <div class="mb-4">
+            <button onclick="addBeer()" class="bg-green-500 text-white px-4 py-2 rounded">Add Beer</button>
+          <button onclick="exportJSON()" class="bg-yellow-500 text-white px-4 py-2 rounded">Save Menu</button>
+    <button onclick="importJSON()" class="bg-indigo-500 text-white px-4 py-2 rounded">Load Menu</button>
+        </div>
+
+    </div>
+
+    <!-- Edit Beer Modal -->
+    
+  
+ 
+  
+  
+  <div id="editModal" class="fixed inset-0 overflow-y-auto hidden">
+  <div class="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
+    <div class="fixed inset-0 transition-opacity">
+      <div class="absolute inset-0 bg-gray-500 opacity-75"></div>
+    </div>
+
+    <span class="hidden sm:inline-block sm:align-middle sm:h-screen"></span>&#8203;
+
+    <div
+      class="inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full"
+    >
+      <div class="bg-gray-100 p-4">
+        <h2 class="text-lg font-semibold text-gray-900">Save Menu</h2>
+        <button
+          onclick="closeEditModal()"      
+          class="absolute top-0 right-0 p-2 m-2"
+          aria-label="Close Settings"
+        >
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+            </svg>
+  
+        </button>
+      </div>
+
+      <div class="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
+        <!-- Settings options here with appropriate Tailwind CSS classes -->
+        <!-- Example: -->
+        <div class="mb-4">
+<form id="editForm">
+                    <label for="editName" class="block text-sm font-medium text-gray-600">Name</label>
+                    <input type="text" id="editName" name="editName" class="mt-1 p-2 border rounded-md w-full" required>
+
+                    <label for="editDescription" class="block mt-4 text-sm font-medium text-gray-600">Description</label>
+                    <textarea id="editDescription" name="editDescription" rows="3" class="mt-1 p-2 border rounded-md w-full"></textarea>
+
+                    <label for="editABV" class="block mt-4 text-sm font-medium text-gray-600">ABV</label>
+                    <input type="text" id="editABV" name="editABV" class="mt-1 p-2 border rounded-md w-full">
+
+                    <label for="editIBU" class="block mt-4 text-sm font-medium text-gray-600">IBU</label>
+                    <input type="text" id="editIBU" name="editIBU" class="mt-1 p-2 border rounded-md w-full">
+  
+    <label for="editPrice" class="block mt-4 text-sm font-medium text-gray-600">Price</label>
+                    <input type="text" id="editPrice" name="editPrice" class="mt-1 p-2 border rounded-md w-full">
+          
+        </div>
+
+        <!-- Repeat similar structure for other Ace Editor options -->
+
+        <!-- Save and Cancel buttons -->
+        <div class="mt-5 sm:mt-4 sm:flex sm:flex-row-reverse">
+          <button
+            type="submit"
+            class="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-blue-500 text-base font-medium text-white hover:bg-blue-600 focus:outline-none focus:ring focus:border-blue-300 sm:ml-3 sm:w-auto sm:text-sm"
+          >
+            Save
+          </button>
+          <button
+            type="button" onclick="closeEditModal()"
+            class="mt-3 w-full inline-flex justify-center rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-base font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring focus:border-blue-300 sm:mt-0 sm:w-auto sm:text-sm"
+          >
+            Cancel
+          </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+  <!-- Notification--->
+ <div id="notification-container" class="fixed bottom-4 right-4 flex flex-col items-end gap-4 z-50"></div>  
+  
+ 
+  
+<div class="fixed inset-0 overflow-y-auto hidden" id="exportModalOverlay">
+  <div class="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0" id="exportModal">
+    <div class="fixed inset-0 transition-opacity">
+      <div class="absolute inset-0 bg-gray-500 opacity-75"></div>
+    </div>
+
+    <span class="hidden sm:inline-block sm:align-middle sm:h-screen"></span>&#8203;
+
+    <div
+      class="inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full"
+    >
+      <div class="bg-gray-100 p-4">
+        <h2 class="text-lg font-semibold text-gray-900">Save Menu</h2>
+       <button
+          onclick="closeExportModal()"      
+          class="absolute top-0 right-0 p-2 m-2"
+          aria-label="Close Save Menu"
+        >
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+            </svg>
+  
+        </button>
+      </div>
+
+      <div class="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
+        <!-- Settings options here with appropriate Tailwind CSS classes -->
+        <!-- Example: -->
+        <div class="mb-4">
+        <form id="exportForm">
+          
+             <label for="exportMenuName" class="block text-sm font-medium text-gray-600">Menu Title</label>
+            <input type="text" id="exportMenuName" name="exportMenuName" class="mt-1 p-2 border rounded-md w-full"  placeholder="Currently On Tap">
+          
+          
+            <label for="exportFilename" id="exportFileName" class="block text-sm font-medium text-gray-600">File Name</label>
+            <input type="text" id="exportFilename" name="exportFilename" class="mt-1 p-2 border rounded-md w-full" required placeholder="Enter filename without extension">
+
+          
+          
+          <label for="marqueeItems" class="block mt-4 text-sm font-medium text-gray-600">Marquee Items (seperate by $|$)</label>
+                    <textarea id="marqueeItems" name="marqueeItems" placeholder="Cold beer SERVED here $|$ Friday night is karaoke" rows="3" class="mt-1 p-2 border rounded-md w-full"></textarea>
+           
+        
+
+    
+
+        <div class="mb-4">
+          <label for="titleEnabled" class="block text-sm font-medium text-gray-700">Show Menu Title?</label>
+          <label
+            class="toggle-switch"
+          >
+            <input
+              type="checkbox"
+              id="titleEnabled"
+              class="toggle-checkbox"
+              checked
+            >
+            <span class="toggle-slider"></span>
+          </label>
+        </div>
+
+       
+        <div class="mb-4">
+          <label for="marqueeEnabled" class="block text-sm font-medium text-gray-700">Show Marquee At Top?</label>
+          <label
+            class="toggle-switch"
+          >
+            <input
+              type="checkbox"
+              id="marqueeEnabled"
+              class="toggle-checkbox"
+              checked
+            >
+            <span class="toggle-slider"></span>
+          </label>
+        </div>
+          
+          
+        <div class="mb-4">
+          <label for="marqueeSettings.clock" class="block text-sm font-medium text-gray-700">Add current time to marquee?</label>
+          <label
+            class="toggle-switch"
+          >
+            <input
+              type="checkbox"
+              id="marqueeSettings.clock"
+              class="toggle-checkbox"
+              checked
+            >
+            <span class="toggle-slider"></span>
+          </label>
+        </div>   
+        <!-- Repeat similar structure for other Ace Editor options -->
+
+        <!-- Save and Cancel buttons -->
+        <div class="mt-5 sm:mt-4 sm:flex sm:flex-row-reverse">
+          <button
+            type="submit"
+            class="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-blue-500 text-base font-medium text-white hover:bg-blue-600 focus:outline-none focus:ring focus:border-blue-300 sm:ml-3 sm:w-auto sm:text-sm"
+          >
+            Save
+          </button>
+          <button
+            type="button"
+            onclick="closeExportModal()"
+            class="mt-3 w-full inline-flex justify-center rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-base font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring focus:border-blue-300 sm:mt-0 sm:w-auto sm:text-sm"
+          >
+            Cancel
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+  
+    <script>
         // Sample JSON data for initial menu
         let beerMenu = [
             { name: "Craft Beer 1", description: "Description of Craft Beer 1. This beer is brewed with the finest ingredients and has a distinct flavor profile.", abv: "6.5%", ibu: 30, price:"$2.00 USD" },
@@ -546,260 +798,6 @@ const delay = ms => new Promise(res => setTimeout(res, ms))
         };
    
     </script>
-	
-</head>
-<body class="bg-gray-100 p-8 page-loader-active"> 
-
-  <!-- Page Loader -->
-    <div id="page-loader"
-        class="fixed top-0 left-0 w-full h-full bg-white flex items-center justify-center opacity-100 transition-opacity duration-300 z-50 ">
-        <svg version="1.1" id="Ebene_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-	 width="100%" height="500px" viewBox="0 0 560 960" style="enable-background:new 0 0 560 960;" xml:space="preserve">
-
-<path class="beer" d="M147,386.582c0,0,0.833,235.875,0.833,257.209S168.333,668,172.667,668s145.667,0,154.333,0s17-11,17-28
-	s0-253,0-253L147,386.582z"/>
-<path class="schaum" d="M344,387l-132-0.418V422c0,0-2,16.75-20.75,16.75S171,428.25,171,423.5c0-5.25,0-36.5,0-36.5
-	s-12.25-0.334-24-0.418c-19.625-2.457-23-25.332-3.625-38.832c-7.5-30.25,64.063-94.25,107.896-16.418
-	c15.333-15.5,39.781-19,49.115,14.168c3.666-24.834,10.437-43.25,42.974-43.25c28.668,0,41.457,27.082,41.457,41.422
-	C384.814,375,356.732,387,346.215,387H344z"/>
-<path class="handle" d="M348,597c0,0,27.75,0,53,0c14,0,20.5-16.5,20.5-25.5c0-4.25,0.355-99,0.355-113.75S407.75,437,399.25,437
-	S348,437,348,437"/>
-<path class="outline" d="M147,385.481c0,0,0.833,235.875,0.833,257.209s20.5,24.209,24.834,24.209s145.667,0,154.333,0s17-11,17-28
-	s0-48,0-48v-4v-201l-132-0.418v35.418c0,0-2,16.75-20.75,16.75s-20.25-10.5-20.25-15.25c0-5.25,0-36.5,0-36.5
-	S158.75,385.565,147,385.481c-19.625-2.457-23-25.332-3.625-38.832c-7.5-30.25,64.063-94.25,107.896-16.418
-	c15.332-15.5,39.78-19,49.114,14.168c3.666-24.834,10.437-43.25,42.974-43.25c28.668,0,41.457,27.082,41.457,41.422
-	c-0.002,31.328-28.084,43.328-38.602,43.328"/>
-<line class="lines" x1="196" y1="480" x2="196" y2="562"/>
-<line class="lines" x1="250" y1="480" x2="250" y2="562"/>
-<line class="lines" x1="304" y1="480" x2="304" y2="562"/>
-	
-</svg>
-    </div>
-  
-    <div class="max-w-4xl mx-auto ">
-    <!-- Go Back arrow --> 
-    <a href="../index.html" class="static top-0 left-0 p-4  md:absolute md:p-4 md:py-6">
-        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="h-6 w-6">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
-        </svg>
-    </a>
-
-        <h1 class="text-4xl font-bold mb-8">What's on Tap Editor</h1>
-   <!-- Beer items will be added here dynamically -->
-    <div class="w-full text-center" id="emptyMessage" style="display: none;">
-        <p class="text-gray-500 text-lg font-bold">Menu is empty</p>
-    </div>
-        <div id="beerList" class="flex flex-wrap -mx-4 mb-4">
-            <!-- Beer items will be added here dynamically -->
-        </div>
-
-        <div class="mb-4">
-            <button onclick="addBeer()" class="bg-green-500 text-white px-4 py-2 rounded">Add Beer</button>
-          <button onclick="exportJSON()" class="bg-yellow-500 text-white px-4 py-2 rounded">Save Menu</button>
-    <button onclick="importJSON()" class="bg-indigo-500 text-white px-4 py-2 rounded">Load Menu</button>
-        </div>
-
-    </div>
-
-    <!-- Edit Beer Modal -->
-    
-  
- 
-  
-  
-  <div id="editModal" class="fixed inset-0 overflow-y-auto hidden">
-  <div class="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
-    <div class="fixed inset-0 transition-opacity">
-      <div class="absolute inset-0 bg-gray-500 opacity-75"></div>
-    </div>
-
-    <span class="hidden sm:inline-block sm:align-middle sm:h-screen"></span>&#8203;
-
-    <div
-      class="inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full"
-    >
-      <div class="bg-gray-100 p-4">
-        <h2 class="text-lg font-semibold text-gray-900">Save Menu</h2>
-        <button
-          onclick="closeEditModal()"      
-          class="absolute top-0 right-0 p-2 m-2"
-          aria-label="Close Settings"
-        >
-            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
-            </svg>
-  
-        </button>
-      </div>
-
-      <div class="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
-        <!-- Settings options here with appropriate Tailwind CSS classes -->
-        <!-- Example: -->
-        <div class="mb-4">
-<form id="editForm">
-                    <label for="editName" class="block text-sm font-medium text-gray-600">Name</label>
-                    <input type="text" id="editName" name="editName" class="mt-1 p-2 border rounded-md w-full" required>
-
-                    <label for="editDescription" class="block mt-4 text-sm font-medium text-gray-600">Description</label>
-                    <textarea id="editDescription" name="editDescription" rows="3" class="mt-1 p-2 border rounded-md w-full"></textarea>
-
-                    <label for="editABV" class="block mt-4 text-sm font-medium text-gray-600">ABV</label>
-                    <input type="text" id="editABV" name="editABV" class="mt-1 p-2 border rounded-md w-full">
-
-                    <label for="editIBU" class="block mt-4 text-sm font-medium text-gray-600">IBU</label>
-                    <input type="text" id="editIBU" name="editIBU" class="mt-1 p-2 border rounded-md w-full">
-  
-    <label for="editPrice" class="block mt-4 text-sm font-medium text-gray-600">Price</label>
-                    <input type="text" id="editPrice" name="editPrice" class="mt-1 p-2 border rounded-md w-full">
-          
-        </div>
-
-        <!-- Repeat similar structure for other Ace Editor options -->
-
-        <!-- Save and Cancel buttons -->
-        <div class="mt-5 sm:mt-4 sm:flex sm:flex-row-reverse">
-          <button
-            type="submit"
-            class="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-blue-500 text-base font-medium text-white hover:bg-blue-600 focus:outline-none focus:ring focus:border-blue-300 sm:ml-3 sm:w-auto sm:text-sm"
-          >
-            Save
-          </button>
-          <button
-            type="button" onclick="closeEditModal()"
-            class="mt-3 w-full inline-flex justify-center rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-base font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring focus:border-blue-300 sm:mt-0 sm:w-auto sm:text-sm"
-          >
-            Cancel
-          </button>
-          </form>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-
-
-  <!-- Notification--->
- <div id="notification-container" class="fixed bottom-4 right-4 flex flex-col items-end gap-4 z-50"></div>  
-  
- 
-  
-<div class="fixed inset-0 overflow-y-auto hidden" id="exportModalOverlay">
-  <div class="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0" id="exportModal">
-    <div class="fixed inset-0 transition-opacity">
-      <div class="absolute inset-0 bg-gray-500 opacity-75"></div>
-    </div>
-
-    <span class="hidden sm:inline-block sm:align-middle sm:h-screen"></span>&#8203;
-
-    <div
-      class="inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full"
-    >
-      <div class="bg-gray-100 p-4">
-        <h2 class="text-lg font-semibold text-gray-900">Save Menu</h2>
-       <button
-          onclick="closeExportModal()"      
-          class="absolute top-0 right-0 p-2 m-2"
-          aria-label="Close Save Menu"
-        >
-            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
-            </svg>
-  
-        </button>
-      </div>
-
-      <div class="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
-        <!-- Settings options here with appropriate Tailwind CSS classes -->
-        <!-- Example: -->
-        <div class="mb-4">
-        <form id="exportForm">
-          
-             <label for="exportMenuName" class="block text-sm font-medium text-gray-600">Menu Title</label>
-            <input type="text" id="exportMenuName" name="exportMenuName" class="mt-1 p-2 border rounded-md w-full"  placeholder="Currently On Tap">
-          
-          
-            <label for="exportFilename" id="exportFileName" class="block text-sm font-medium text-gray-600">File Name</label>
-            <input type="text" id="exportFilename" name="exportFilename" class="mt-1 p-2 border rounded-md w-full" required placeholder="Enter filename without extension">
-
-          
-          
-          <label for="marqueeItems" class="block mt-4 text-sm font-medium text-gray-600">Marquee Items (seperate by $|$)</label>
-                    <textarea id="marqueeItems" name="marqueeItems" placeholder="Cold beer SERVED here $|$ Friday night is karaoke" rows="3" class="mt-1 p-2 border rounded-md w-full"></textarea>
-           
-        
-
-    
-
-        <div class="mb-4">
-          <label for="titleEnabled" class="block text-sm font-medium text-gray-700">Show Menu Title?</label>
-          <label
-            class="toggle-switch"
-          >
-            <input
-              type="checkbox"
-              id="titleEnabled"
-              class="toggle-checkbox"
-              checked
-            >
-            <span class="toggle-slider"></span>
-          </label>
-        </div>
-
-       
-        <div class="mb-4">
-          <label for="marqueeEnabled" class="block text-sm font-medium text-gray-700">Show Marquee At Top?</label>
-          <label
-            class="toggle-switch"
-          >
-            <input
-              type="checkbox"
-              id="marqueeEnabled"
-              class="toggle-checkbox"
-              checked
-            >
-            <span class="toggle-slider"></span>
-          </label>
-        </div>
-          
-          
-        <div class="mb-4">
-          <label for="marqueeSettings.clock" class="block text-sm font-medium text-gray-700">Add current time to marquee?</label>
-          <label
-            class="toggle-switch"
-          >
-            <input
-              type="checkbox"
-              id="marqueeSettings.clock"
-              class="toggle-checkbox"
-              checked
-            >
-            <span class="toggle-slider"></span>
-          </label>
-        </div>   
-        <!-- Repeat similar structure for other Ace Editor options -->
-
-        <!-- Save and Cancel buttons -->
-        <div class="mt-5 sm:mt-4 sm:flex sm:flex-row-reverse">
-          <button
-            type="submit"
-            class="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-blue-500 text-base font-medium text-white hover:bg-blue-600 focus:outline-none focus:ring focus:border-blue-300 sm:ml-3 sm:w-auto sm:text-sm"
-          >
-            Save
-          </button>
-          <button
-            type="button"
-            onclick="closeExportModal()"
-            class="mt-3 w-full inline-flex justify-center rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-base font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring focus:border-blue-300 sm:mt-0 sm:w-auto sm:text-sm"
-          >
-            Cancel
-          </button>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-  
-   
 
 </body>
 </html>
