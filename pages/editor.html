@@ -524,8 +524,8 @@
                         price:                   document.getElementById('editPrice').value.trim() || null,
                     };
                     if(!updatedBeer.name){
-                     showNotification('red', 'Name Missing', `No name was added!`);
-                      reject()
+                     
+                      reject('No name was added!')
                     }
                     resolve(updatedBeer);
                 });
@@ -554,6 +554,7 @@
                     editModal.style.display = 'none';
                 })
                 .catch(reason => {
+	           showNotification('red', 'Error', reason);
                    // console.log(reason); // Log the reason (e.g., "Canceled")
                     // Close the modal
                     editModal.style.display = 'none';
