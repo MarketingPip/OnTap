@@ -670,14 +670,14 @@
           } 
                 const jsonData = JSON.stringify(settings, null, 2);
           
-       console.log(jsonData)
+      
                 const blob = new Blob([jsonData], { type: 'application/json' });
 
                 // Create a download link and trigger the download
                 const downloadLink = document.createElement('a');
                 downloadLink.href = URL.createObjectURL(blob);
                 downloadLink.download = `${filename}.json`;
-              //  downloadLink.click();
+                downloadLink.click();
 
                 // Close the modal
                 hideExportModal();
