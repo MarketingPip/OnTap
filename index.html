@@ -729,7 +729,7 @@ const menuTitle = beerMenu.kioskMenu?.title
 
 const MenuTitle_Enabled = beerMenu.options?.titleEnabled
 
-if(!MenuTitle_Enabled || !menuTitle){
+if(!MenuTitle_Enabled && !menuTitle || menuTitle === null){
  document.querySelector("#MenuTitle").style.display = "none"
 } else{
 document.querySelector("#MenuTitle").textContent = menuTitle
