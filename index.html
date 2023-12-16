@@ -525,7 +525,7 @@ window.hideModal = function(){
     if (seconds < 0) {
       clearInterval(timer);
       document.getElementById('redirect').innerHTML = 'You are now being redirected.';
-      let currentLocation = window.location
+      let currentLocation = window.location.origin
       currentLocation = currentLocation.replace("index.html", "")	    
       location.href =  currentLocation + "pages/editor.html" 	    
     }
