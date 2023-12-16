@@ -322,7 +322,7 @@
     </div>
     </div>
     
-    <h1 class="text-4xl font-bold mb-8" id="menuTitle">Currently on Tap</h1>
+    <h1 class="text-4xl font-bold mb-8" id="MenuTitle">Currently on Tap</h1>
     <!---   <div id="beerList" class="flex flex-wrap -mx-4 mb-4" style="overflow-x:hidden;"> --->
     <div id="beerList" class="flex flex-wrap -mx-4" style="overflow-x:hidden;">
       <!-- Beer items will be added here dynamically -->
@@ -723,13 +723,13 @@ document.addEventListener('keydown', function (event) {
 
 function RenderMenuOptions(){
 
-const marqueeEnabled = beerMenu.options?.marqueeEnabled
+const marqueeEnabled = beerMenu.options.marqueeEnabled
 
-const menuTitle = beerMenu.kioskMenu?.title
+const menuTitle = beerMenu.kioskMenu.title
 
-const MenuTitle_Enabled = beerMenu.options?.titleEnabled
+const MenuTitle_Enabled = beerMenu.options.titleEnabled
 
-if(!MenuTitle_Enabled && !menuTitle || menuTitle === null){
+if(!MenuTitle_Enabled || !menuTitle){
  document.querySelector("#MenuTitle").style.display = "none"
 } else{
 document.querySelector("#MenuTitle").textContent = menuTitle
