@@ -561,12 +561,18 @@ window.hideModal = function(){
     </div>
 
  <!-- Save and Cancel buttons -->
-   <div class="flex justify-end space-x-4">
-        <a href="http://www.jquerybyexample.net/" class="maia-button maia-button-primary"><button class="inline-flex items-center justify-center font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 hover:bg-primary/90 min-w-[150px] md:w-[200px] h-10 text-white text-lg md:text-xl p-2 md:p-4 rounded-lg bg-green-500">
-  Yes, Redirect Me
-</button></a>
-        <button onclick="hideModal()" class="inline-flex items-center justify-center font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 hover:bg-primary/90 min-w-[150px] md:w-[200px] h-10 text-white text-lg md:text-xl p-2 md:p-4 rounded-lg bg-red-500">No, I'll do it later</button>
-    </div>
+<div class="flex flex-col md:flex-row justify-end space-y-4 md:space-y-0 md:space-x-4">
+    <a href="http://www.jquerybyexample.net/" class="maia-button maia-button-primary">
+        <button class="w-full md:w-auto inline-flex items-center justify-center font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 hover:bg-primary/90 h-10 text-white text-lg md:text-xl p-2 md:p-4 rounded-lg bg-green-500">
+            Yes, Redirect Me
+        </button>
+    </a>
+    <button onclick="hideModal()" class="w-full md:w-auto inline-flex items-center justify-center font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 hover:bg-primary/90 h-10 text-white text-lg md:text-xl p-2 md:p-4 rounded-lg bg-red-500">
+        No, I'll do it later
+    </button>
+</div>
+
+
 `, 'You can report an issue on GitHub by clicking');
   
     });
@@ -582,12 +588,16 @@ window.hideModal = function(){
         <p>Open-source projects rely on community support. Your donation helps keep the project alive and thriving! Notice: Your money may not just be spent on "beer" but also help fund my groceries, school etc... and possibly beer too.</p>
     </div>
 
-<div class="flex justify-end space-x-4">
-        <a href="http://www.jquerybyexample.net/" class="maia-button maia-button-primary"><button class="inline-flex items-center justify-center font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 hover:bg-primary/90 min-w-[150px] md:w-[200px] h-10 text-white text-lg md:text-xl p-2 md:p-4 rounded-lg bg-green-500">
-  Donate a "Beer"
-</button></a>
-        <button onclick="hideModal()" class="inline-flex items-center justify-center font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 hover:bg-primary/90 min-w-[150px] md:w-[200px] h-10 text-white text-lg md:text-xl p-2 md:p-4 rounded-lg bg-red-500">Not now, maybe later</button>
-    </div>
+<div class="flex flex-col md:flex-row justify-end space-y-4 md:space-y-0 md:space-x-4">
+    <a href="http://www.jquerybyexample.net/" class="maia-button maia-button-primary">
+        <button class="w-full md:w-auto inline-flex items-center justify-center font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 hover:bg-primary/90 h-10 text-white text-lg md:text-xl p-2 md:p-4 rounded-lg bg-green-500">
+            Donate a "Beer"
+        </button>
+    </a>
+    <button onclick="hideModal()" class="w-full md:w-auto inline-flex items-center justify-center font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 hover:bg-primary/90 h-10 text-white text-lg md:text-xl p-2 md:p-4 rounded-lg bg-red-500">
+        Not now, maybe later
+    </button>
+</div>
 `);
     });
 
