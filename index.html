@@ -881,10 +881,7 @@ function parseUrlQuery() {
 
 	 removeHider() 
 
-const addHider = async () => {
-  await delay(300);
-   exampleWrapper.classList.add("hide-display")
-};	  	  
+  	  
 
      
 	  
@@ -905,7 +902,7 @@ const addHider = async () => {
 
         // Add the 'hidden' class after the transition is complete
        exampleWrapper.classList.remove('hidden');
-       addHider()
+       
 	     
     }
     
@@ -931,7 +928,14 @@ const addHider = async () => {
         exampleWrapper.classList.add('hidden');
       
       exampleWrapper.style.visibility = "hidden" ;
-      
+
+
+const addHider = async () => {
+  await delay(300);
+   exampleWrapper.classList.add("hide-display")
+};	
+
+	 addHider()   
       
       exampleWrapper.removeEventListener('transitionend', handleTransitionEnd);
 
