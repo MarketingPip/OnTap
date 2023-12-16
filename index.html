@@ -615,7 +615,7 @@ function importMenu() {
               throw new Error("No items in menu file to render...")            
                         }
 			    
-                        renderBeerMenu();
+                        renderBeerMenu(); // renders the main menu
                     } catch (error) {
                         console.error('Error importing JSON:', error.message);
                         alert('Invalid JSON file. Please check the file format.');
@@ -669,6 +669,7 @@ function importMenu() {
                 behavior: 'smooth'
             });
           registerRefresherOnEscapeKey()
+         RenderMenuOptions() // render menu options such as title, marquee etc.... 		
      //   
         }
 
@@ -700,7 +701,7 @@ document.addEventListener('keydown', function (event) {
 });
 }
 
-
+function RenderMenuOptions(){
 
 const marqueeEnabled = beerMenu.options.marqueeEnabled
 
@@ -743,7 +744,8 @@ document.querySelector("#MenuTitle").textContent = beerMenu.kioskMenu.menuTitle
     const marquee = document.querySelector('.marquee-wrapper');
     marquee.style.display = "none"
   }
-  
+
+	
 function updateMarqueeWithJoke() {
   const jokeMarquee = document.querySelector("#jokeMarquee")
     // Check for internet connectivity
@@ -767,6 +769,7 @@ function updateMarqueeWithJoke() {
       .catch(error => console.error('Error fetching joke:', error));
   }
 
+}	
   // Update the marquee every hour
  // setInterval(updateMarqueeWithJoke, 3600000); // 3600000 milliseconds = 1 hour
 
