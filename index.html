@@ -635,11 +635,16 @@ function importMenu() {
             beers.forEach((beer, index) => {
                 const beerItem = document.createElement('div');
                 beerItem.className = 'w-full md:w-1/2 lg:w-1/3 xl:w-1/4 px-4 mb-4';
-
+                let description = beer.description
+		if(description && description.trim()){
+                 description = `<p class="text-gray-700">${description}</p>`
+		}else{
+                 description = ""
+		}	
                 beerItem.innerHTML = `
                     <div class="bg-white p-6 rounded-lg shadow-md">
                         <h2 class="text-xl font-bold mb-2">${beer.name}</h2>
-                        <p class="text-gray-700">${beer.description}</p>
+                        ${description}
                         <p class="text-gray-500 mt-2">${beer.abv ? `ABV: ${beer.abv}` : ''}
   ${beer.abv && beer.ibu ? ' | ' : ''}
   ${beer.ibu ? `IBU: ${beer.ibu}` : ''}</p>
