@@ -525,6 +525,7 @@ window.hideModal = function(){
     if (seconds < 0) {
       clearInterval(timer);
       document.getElementById('redirect').innerHTML = 'You are now being redirected.';
+      location.href = window.location.href + "pages/editor.html" 	    
     }
   }//
 
@@ -538,7 +539,7 @@ window.hideModal = function(){
      openModal('You are now being redirected to the menu editor', ' <p id="redirect" class="mb-4">Redirecting in 3 seconds...</p>', false);
       redirectTimer = setInterval(updateRedirect, 1000);//
      // updateRedirect()
-       location.href = window.location.href + "/pages/editor.html" 
+       
     });
 
  document.querySelector('.issue-menu').addEventListener('click', function() {
