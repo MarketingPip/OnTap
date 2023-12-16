@@ -561,23 +561,13 @@ window.hideModal = function(){
     </div>
 
  <!-- Save and Cancel buttons -->
-        <div class="mt-5 sm:mt-4 sm:flex sm:flex-row-reverse">
-	       <a href="http://www.jquerybyexample.net" class="w-full sm:w-auto inline-flex">
-            <button
-                type="submit"
-                class="justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-green-500 text-base font-medium text-white hover:bg-green-600 focus:outline-none focus:ring focus:border-blue-300 sm:text-sm"
-            >
-                Yes, Redirect Me.
-            </button>
-        </a>
-	  
-          <button
-            type="button" onclick="hideModal()"
-            class="mt-3 w-full inline-flex justify-center rounded-md border border-red-300 shadow-sm px-4 py-2 bg-red-500 text-base font-medium text-white hover:bg-red-500 focus:outline-none focus:ring focus:border-blue-300 sm:mt-0 sm:w-auto sm:text-sm"
-          >
-            No, I'll do it later
-          </button>
-        </div>
+      <div class="flex justify-end space-x-4">
+        <a href="http://www.jquerybyexample.net/" class="maia-button maia-button-primary"><button class="inline-flex items-center justify-center font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 hover:bg-primary/90 min-w-[150px] md:w-[200px] h-10 text-white text-lg md:text-xl p-2 md:p-4 rounded-lg bg-green-500">
+<button>
+  Yes, Redirect Me
+</button></a>
+        <button onclick="hideModal()" class="items-center justify-center font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 hover:bg-primary/90 min-w-[150px] md:w-[200px] h-10 text-white text-lg md:text-xl p-2 md:p-4 rounded-lg bg-red-500">No, I'll do it later</button>
+    </div>
 `, 'You can report an issue on GitHub by clicking');
   
     });
@@ -585,17 +575,21 @@ window.hideModal = function(){
     document.querySelector('.donate-menu').addEventListener('click', function() {
      openModal('Donate & Support the Creator!', `
     <p class="mb-4">
-        Enjoying this free & open-source software? Consider donating a "beer" to the creator Jared Van Valkengoed to support ongoing development.
+        Enjoying this free & open-source software? Consider donating to the creator Jared Van Valkengoed to support ongoing development.
         Your contribution helps maintain and improve the tools you love!
     </p>
     <div class="maia-notification bg-blue-100 text-blue-800 p-3 mb-4">
-        <p class="font-bold">Why Donate a "Beer"?</p>
-        <p>Open-source projects rely on community support. Your donation helps keep the project alive and thriving! Notice: Your money may not just be spent on "beer" but also help fund my groceries  etc... and possibly beer too.</p>
+        <p class="font-bold">Why Donate?</p>
+        <p>Open-source projects rely on community support. Your donation helps keep the project alive and thriving! Notice: Your money may not just be spent on "beer" but also help fund my groceries, school etc... and possibly beer too.</p>
     </div>
 
+
     <div class="flex justify-end space-x-4">
-        <a href="https://example-donation-page.com" class="issue-menu inline-flex items-center justify-center font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 hover:bg-primary/90 h-10 bg-green-500 text-white text-xl p-4 rounded-lg" target="_blank" rel="noopener noreferrer">Donate a "Beer"</a>
-        <button onclick="hideModal()" class="maia-button">Not now, maybe later</button>
+        <a href="http://www.jquerybyexample.net/" class="maia-button maia-button-primary"><button class="inline-flex items-center justify-center font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 hover:bg-primary/90 min-w-[150px] md:w-[200px] h-10 text-white text-lg md:text-xl p-2 md:p-4 rounded-lg bg-green-500">
+<button>
+ Donate a "Beer"
+</button></a>
+        <button onclick="hideModal()" class="items-center justify-center font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 hover:bg-primary/90 min-w-[150px] md:w-[200px] h-10 text-white text-lg md:text-xl p-2 md:p-4 rounded-lg bg-red-500">Not now, maybe later</button>
     </div>
 `);
     });
