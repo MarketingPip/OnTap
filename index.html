@@ -1158,6 +1158,7 @@ window.addEventListener('pageshow', function(event) {
   if (event.persisted || (window.performance && window.performance.navigation.type === 2)) {
     // Page is being loaded from the bfcache or from a back/forward navigation
     // Perform your reload or initialization logic here
+   document.body.classList.add("page-loader-active")
     location.reload(true); // Reload the page
   }
 });
