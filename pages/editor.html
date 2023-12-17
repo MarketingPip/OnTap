@@ -554,7 +554,10 @@
                     editModal.style.display = 'none';
                 })
                 .catch(reason => {
+
+		if(reason != "Canceled"){	    	
 	           showNotification('red', 'Error', reason);
+		}
                    // console.log(reason); // Log the reason (e.g., "Canceled")
                     // Close the modal
                     editModal.style.display = 'none';
@@ -758,9 +761,7 @@ function importJSON() {
 			    
                         renderBeerMenu();
                     } catch (error) {
-		       if(error.message != "Canceled"){	    
                        showNotification('red', 'Error', error.message || "Something went wrong"); 
-		       }      
                     }
                 };
 
