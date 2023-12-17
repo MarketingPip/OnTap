@@ -1,4 +1,4 @@
-function updateCheck(){
+export function updateCheck(){
 
 function isOnline() {
   return navigator ? navigator.onLine : false;
