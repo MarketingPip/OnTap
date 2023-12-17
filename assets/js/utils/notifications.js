@@ -1,4 +1,4 @@
-    async function showNotification(type, title, message) {
+   export async function showNotification(type, title, message) {
       const container = document.getElementById('notification-container');
 
       // Create notification element
