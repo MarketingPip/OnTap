@@ -1,4 +1,4 @@
-function validateVersion(version) {
+export function validateVersion(version) {
     // Split the version string using dot as a delimiter
     const versionNumbers = version.split('.');
 
