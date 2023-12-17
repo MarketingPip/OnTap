@@ -892,6 +892,7 @@ const delay = ms => new Promise(res => setTimeout(res, ms))
         window.onload = function () {
             removeLoader();  
 
+	   updateCheck()
          // Ensure page is at top
 
 	  document.body.scrollTo({
