@@ -1,5 +1,5 @@
    // Function to remove the loader and show content
-        function removeLoader(isHomePage = false) {
+      export  function removeLoader(isHomePage = false) {
             document.getElementById('page-loader').classList.add('opacity-0');
             setTimeout(function () {
               document.getElementById('page-loader').style.opacity = 0 
