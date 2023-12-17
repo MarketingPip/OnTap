@@ -734,8 +734,7 @@ function importJSON() {
                         const importedData = JSON.parse(e.target.result);
                         // Validate the JSON schema here if needed
 
-                        // Update the beer menu
-                        beerMenu = importedData.kioskMenu.beers;
+               
                         if(importedData.programName != "BeerKiosk" && !importedData.kioskMenu){
               throw new Error("Invalid file or corrupt menu file.")            
                         }  
@@ -746,6 +745,16 @@ function importJSON() {
 			if(invalidVersion){
                          throw new Error(invalidVersion) 
 			}
+
+
+			if(importedData.kioskMenu.beers.length != 0){
+                          beerMenu = importedData.kioskMenu.beers;
+			} else{
+                          beerMenu = []
+			}
+			    
+		       // Update the beer menu
+                           
 			    
                         renderBeerMenu();
                     } catch (error) {
