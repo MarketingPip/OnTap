@@ -713,8 +713,9 @@ function importMenu() {
                         <h2 class="text-xl font-bold mb-2">${beer.name}</h2>
                         ${description}
                         <p class="text-gray-500 mt-2">${beer.abv ? `ABV: ${beer.abv}` : ''}
-  ${beer.abv && beer.ibu ? ' | ' : ''}
-  ${beer.ibu ? `IBU: ${beer.ibu}` : ''}</p>
+    ${beer.abv && beer.ibu ? ' | ' : ''}
+    ${beer.ibu ? `IBU: ${beer.ibu}` : ''}
+    ${beer.price ? `${beer.abv || beer.ibu ? ' | ' : ''}Price: ${beer.price}` : ''}</p>
                     </div>
                 `;
 
