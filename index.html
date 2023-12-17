@@ -725,12 +725,13 @@ function importMenu() {
            //displayMenu.classList.remove("hidden")
 
 	const removeHiddenClass = async () => {
-         await delay(300);
-          displayMenu.classList.remove("hidden")
+	  displayMenu.classList.remove("hidden")	
+         await delay(100);
+        
          };	
 
-	  //removeHiddenClass()	
-		displayMenu.classList.remove("hidden")
+	  removeHiddenClass()	
+		//displayMenu.classList.remove("hidden")
 	 	
           displayMenu.classList.remove("hide-display")
            displayMenu.style.opacity = '1';
