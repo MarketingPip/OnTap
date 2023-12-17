@@ -897,7 +897,8 @@ const delay = ms => new Promise(res => setTimeout(res, ms))
               
           
              hidePageLoader()
-
+		    
+             updateCheck() // check for updates	
             }, 3150); // completes animations at this time 
           
         }
@@ -918,7 +919,7 @@ const delay = ms => new Promise(res => setTimeout(res, ms))
           }
 
 
-	  updateCheck()	
+	  
         };
 
 
