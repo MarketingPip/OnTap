@@ -4,9 +4,20 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../assets/tailwind.css">
-    <script src="../assets/js/versionCheck.js"></script>
-      <script src="../assets/js/pageLoaderRemover.js"></script>	
-    <script src="../assets/js/notifications.js"></script>			
+  <script type="module">
+	 import * as utils from '../assets/js/utils/index.js';
+
+
+window.showNotification = utils.showNotification
+
+window.removeLoader = utils.removeLoader	    
+	    
+
+window.validateVersion = utils.validateVersion	    
+
+	
+//func1(); // Function 1 from module1
+    </script>			
     <title>What's on Tap Editor</title>
     <style>
         body {
