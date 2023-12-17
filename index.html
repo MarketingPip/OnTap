@@ -676,6 +676,17 @@ function importMenu() {
 			if(invalidVersion){
                          throw new Error(invalidVersion) 
 			}
+
+
+                        const removeHiddenClass = async () => {
+			const displayMenu = document.querySelector('.display-menu')	
+	                displayMenu.classList.remove("hidden")	
+                        await delay(3000);
+        
+                        };	
+
+	                removeHiddenClass()	
+			    
 			    
                         renderBeerMenu(); // renders the main menu
                     } catch (error) {
@@ -724,13 +735,7 @@ function importMenu() {
          document.querySelector('.main-menu').style.display = "none"		
            //displayMenu.classList.remove("hidden")
 
-	const removeHiddenClass = async () => {
-	  displayMenu.classList.remove("hidden")	
-         await delay(100);
-        
-         };	
 
-	  removeHiddenClass()	
 		//displayMenu.classList.remove("hidden")
 	 	
           displayMenu.classList.remove("hide-display")
