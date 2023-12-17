@@ -674,10 +674,10 @@ function importMenu() {
               throw new Error("No items in menu file to render...")            
                         }
 
-                       const invalidVersion = validateVersion(importedData).error  
+                       const invalidVersion = validateVersion(importedData.version).error  
 			    
 			if(invalidVersion){
-                         throw new Error("No items in menu file to render...") 
+                         throw new Error(invalidVersion) 
 			}
 			    
                         renderBeerMenu(); // renders the main menu
