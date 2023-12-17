@@ -4,7 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../assets/tailwind.css">
-    <script src="../assets/js/versionCheck.js"></script>		
+    <script src="../assets/js/versionCheck.js"></script>
+      <script src="../assets/js/pageLoaderRemover.js"></script>		
     <title>What's on Tap Editor</title>
     <style>
         body {
@@ -759,36 +760,7 @@ function importJSON() {
       
       
       
-    async function showNotification(type, title, message) {
-      const container = document.getElementById('notification-container');
 
-      // Create notification element
-      const notification = document.createElement('div');
-      notification.className = `bg-${type}-100 border-l-4 border-${type}-500 text-${type}-700 p-4`;
-      notification.setAttribute('role', 'alert');
-
-      // Create title element
-      const titleElement = document.createElement('p');
-      titleElement.className = 'font-bold';
-      titleElement.innerText = title;
-
-      // Create message element
-      const messageElement = document.createElement('p');
-      messageElement.innerText = message;
-
-      // Append title and message to notification
-      notification.appendChild(titleElement);
-      notification.appendChild(messageElement);
-
-      // Append notification to container
-      container.appendChild(notification);
-
-      // Wait for a moment, then remove the notification
-      await new Promise(resolve => setTimeout(resolve, 5000)); // Adjust the timeout as needed
-
-      // Remove notification after the delay
-      container.removeChild(notification);
-    }
 
 
       
@@ -801,20 +773,7 @@ const delay = ms => new Promise(res => setTimeout(res, ms))
    document.getElementById('page-loader').classList.add("hide-display")
 };
 
-   // Function to remove the loader and show content
-        function removeLoader() {
-            document.getElementById('page-loader').classList.add('opacity-0');
-            setTimeout(function () {
-              document.getElementById('page-loader').style.opacity = 0 
-              document.body.classList.remove("page-loader-active")
-              
-          
-             hidePageLoader()
 
-            }, 3150); // completes animations at this time 
-          
-        }
-      
        window.onload = function () {
             removeLoader();  
           
