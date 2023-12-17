@@ -255,7 +255,7 @@
     </div>
 
 
-<div class="main-menu h-screen">
+<div class="main-menu">
   <div class="text-4xl font-bold text-center py-8 ">Welcome to What's On Tap!
   <p class="text-sm py-2">Create & Customize Your Own Menus In Minutes!</p>
   </div>
@@ -329,7 +329,7 @@
   </div>
 </div>
 
-<div class="display-menu hide-display delay-500 bg-gray-100 p-8 opacity-0 transition-opacity duration-300 h-full">
+<div class="display-menu hidden hide-display delay-500 bg-gray-100 p-8 opacity-0 transition-opacity duration-300 h-full">
   <div class="max-w-4xl">
  
   <div class="marquee-wrapper">   
@@ -736,6 +736,11 @@ function importMenu() {
              // Update the beer menu
          document.querySelector('.main-menu').style.display = "none"		
            //displayMenu.classList.remove("hidden")
+
+	const removeHiddenClass = async () => {
+         await delay(300);
+          displayMenu.classList.remove("hidden")
+         };	
           displayMenu.classList.remove("hide-display")
            displayMenu.style.opacity = '1';
           displayMenu.classList.add("show-display")
