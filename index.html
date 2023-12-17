@@ -529,11 +529,11 @@ function openModal(title, content, closeButton = true) {
   
 window.hideModal = function(){
        modal.style.display = 'none';
+	showOverlay()
   }
   
   function ModalHandler(){
- hideModal()
- showOverlay()	  
+ hideModal()	  
 closeModalButton.removeEventListener('click',  ModalHandler);
   }
   
