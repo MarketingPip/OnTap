@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../assets/tailwind.css">
+    <script src="../assets/js/versionCheck.js"></script>		
     <title>What's on Tap Editor</title>
     <style>
         body {
@@ -701,22 +702,7 @@
     }
 
 
-function validateVersion(version) {
-    // Split the version string using dot as a delimiter
-    const versionNumbers = version.split('.');
-
-    // Extract the first number from the version string
-    const firstNumber = parseInt(versionNumbers[0]);
-
-    // Check if the first number is 1
-    if (firstNumber === 1) {
-        return {error:false}
-    } else if (firstNumber > 1) {
-        return {error:'Menu Version is too high. You need to upgrade your software to open this menu.'}
-    } else {
-        return {error:'Menu Version is too low. You need to downgrade your software to open this menu.'}
-    }
-}	    
+   
       
     // Import JSON
 function importJSON() {
