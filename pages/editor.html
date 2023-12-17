@@ -758,7 +758,9 @@ function importJSON() {
 			    
                         renderBeerMenu();
                     } catch (error) {
-                       showNotification('red', 'Error', error.message || "Something went wrong");  
+		       if(error.message != "Canceled"){	    
+                       showNotification('red', 'Error', error.message || "Something went wrong"); 
+		       }      
                     }
                 };
 
