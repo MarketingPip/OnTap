@@ -735,7 +735,7 @@ function importJSON() {
                         // Validate the JSON schema here if needed
 
                         // Update the beer menu
-                        beerMenu = importedData;
+                        beerMenu = importedData.kioskMenu.beers;
                         if(importedData.programName != "BeerKiosk" && !importedData.kioskMenu){
               throw new Error("Invalid file or corrupt menu file.")            
                         }  
