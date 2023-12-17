@@ -890,7 +890,7 @@ const delay = ms => new Promise(res => setTimeout(res, ms))
 
         // Window onload event to ensure all scripts are loaded
         window.onload = function () {
-            removeLoader();  
+            removeLoader(true); // true flag - sets update checks.  
 
 	
          // Ensure page is at top
