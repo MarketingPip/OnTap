@@ -26,3 +26,38 @@ async function getLatestRelease(username, repo) {
 function isOnline() {
   return navigator ? navigator.onLine : false;
 }
+
+async function getLatestReleaseWithInternetCheck(username, repo) {
+  try {
+    const online = await isOnline();
+
+    if (!online) {
+      throw new Error("No internet connection");
+    }
+
+    const latestRelease = await getLatestRelease(username, repo);
+    return latestRelease;
+  } catch (error) {
+    console.error("Error:", error.message);
+    // You can handle the error further or throw it to let the calling code handle it
+    throw error;
+  }
+}
+
+
+const username = 'MarketingPipeline';
+const repo = 'Termino.js';
+
+let currentVersion = 1
+
+getLatestReleaseWithInternetCheck(username, repo)
+  .then((latestRelease) => {
+    const latest_version = latestRelease.tagName.replace("v", "")
+    if(latest_version != "1.0.0"){
+      console.log(`New version available! 🚀 It appears you are using ${currentVersion}, feel free to update now to version: ${latest_version}. Released on ${latestRelease.releaseDate.split("T")[0]}`)
+    }
+    console.log("Latest Release:", latestRelease);
+  })
+  .catch((error) => {
+    console.error("Error:", error.message);
+  });
