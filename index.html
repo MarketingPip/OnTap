@@ -546,7 +546,6 @@ closeModalButton.removeEventListener('click',  ModalHandler);
   // Function to update redirect element
   function updateRedirect() {
     const timer = redirectTimer 
-    console.log("called")
     document.getElementById('redirect').innerHTML = `Redirecting in ${seconds} seconds...`;
     seconds--;
 
@@ -629,7 +628,6 @@ closeModalButton.removeEventListener('click',  ModalHandler);
 
 
 function validateVersion(version) {
-  console.log(version)	
     // Split the version string using dot as a delimiter
     const versionNumbers = version.split('.');
 
