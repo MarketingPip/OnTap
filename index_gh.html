@@ -123,9 +123,19 @@
         document.querySelector("#latestSHA").textContent = data.latest_sha;
 
         // Remove any query parameters from the URL
-        let urlWithoutQuery = window.location.href.split('?')[0];
+        let urlWithoutQuery = window.location.href;
 
-        urlWithoutQuery = urlWithoutQuery.split('/')[0]
+        urlWithoutQuery = urlWithoutQuery.split('?')[0]
+
+         if (window.location.origin.includes("github.io")) {
+
+         urlWithoutQuery =  urlWithoutQuery.split('/');  
+
+          urlWithoutQuery =  urlWithoutQuery.pop()
+
+           urlWithoutQuery =  urlWithoutQuery.join("") 
+
+         }
          
         const domain = urlWithoutQuery
          
