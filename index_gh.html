@@ -3,9 +3,10 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="Your website's meta description goes here" />
-    <title>Tap</title>
+    <meta name="description" content="Enhance your business with the new OnTap. A free, open-source menu display software. Download now." />
+    <title>OnTap - Download the Free, Menu Display Software</title>
     <link rel="stylesheet" href="https://unpkg.com/@primer/css/dist/primer.min.css" />
+    <meta name="keywords" content="free kiosk menu software, interactive display, digital menu, download software, business solutions, open source, beer menu, store menu" />
   </head>
    <style>
   #versionTable {
@@ -36,6 +37,9 @@
       margin: 0 5px;
       padding: 5px 10px;
     }
+     .hidden{
+       display:none;
+     }
   </style>
   <body>
     <nav class="bg-gray-light p-3">
@@ -57,15 +61,17 @@
       <h1 class="f00-light">Your download should be starting shortly...</h1>
      <div class="container-lg mx-auto py-6 p-responsive">
 
-    <h1>Version Information</h1>  
+    <h3>If the download has not started, click the button below.</h3>  
    
        <div class="m-4">
- <button class="btn-mktg" type="button">Download</button>
+         <a class="download-btn" download><button class="btn-mktg" type="button">Download</button></a>
       </div>
   <p>Latest Version: <span id="latestVersion"></span></p>
-  <p>Latest SHA: <span id="latestSHA"></span></p>
+  <p>SHA: <span id="latestSHA"></span></p>
 
-  <table id="versionTable" class="border">
+  <div class="previousVersions hidden">     
+<h1>Demo(s)</h1>
+    <table id="versionTable" class="border">
     <thead class="bg-blue text-white">
       <tr>
         <th>Version</th>
@@ -83,6 +89,7 @@
     <button class="btn btn-outline-primary">2</button>
     <!-- Add more buttons as needed -->
   </div>
+       </div> 
   </center>
 
     
@@ -95,12 +102,8 @@
       </div>
     </footer>
        <script>
-    async function fetchAndPopulateTable() {
-      const table = document.getElementById("versionTable");
-
-      try {
-         const response = null
-        const data = {
+         
+           const data = {
   "latest_version": "0.0.4",
   "previous_versions": {
     "0.0.1": {
@@ -116,12 +119,29 @@
   "latest_sha": "98ed7e0a3a26139f29f9660119585d0289d546f8"
 }
 
-        document.getElementById("latestVersion").textContent = data.latest_version;
-        document.getElementById("latestSHA").textContent = data.latest_sha;
+        document.querySelector("#latestVersion").textContent = data.latest_version;
+        document.querySelector("#latestSHA").textContent = data.latest_sha;
+         
+        const domain = window.location.origin; 
+         
+          document.querySelector(".download-btn").href = `${domain}/downloads/${data.latest_version}`;
+         
+    async function fetchAndPopulateTable() {
+      const table = document.getElementById("versionTable");
 
-        const domain = window.location.origin;
+      try {
+         const response = null
+      
+
+        
 
         const previousVersions = data.previous_versions;
+       
+ if(Object.keys(previousVersions).length > 0){
+          document.querySelector(".previousVersions").classList.remove("hidden")
+        }
+         //
+        
         for (const version in previousVersions) {
           const row = table.insertRow();
           const cellVersion = row.insertCell(0);
@@ -142,7 +162,7 @@
       }
     }
 
-    fetchAndPopulateTable();
+    // fetchAndPopulateTable(); for future
   </script>
   </body>
 </html> 
