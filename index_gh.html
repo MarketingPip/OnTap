@@ -121,8 +121,14 @@
 
         document.querySelector("#latestVersion").textContent = data.latest_version;
         document.querySelector("#latestSHA").textContent = data.latest_sha;
+
+       // Get the current URL
+         const currentUrl = window.location.href;
+        // Remove any query parameters from the URL
+        const urlWithoutQuery = currentUrl.split('?')[0];
+
          
-        const domain = window.location.origin; 
+        const domain = urlWithoutQuery
          
           document.querySelector(".download-btn").href = `${domain}/downloads/${data.latest_version}`;
          
