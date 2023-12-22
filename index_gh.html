@@ -125,7 +125,7 @@
         // Remove any query parameters from the URL
         let urlWithoutQuery = window.location.href.split('?')[0];
 
-        urlWithoutQuery = urlWithoutQuery.split('/').filter(Boolean).pop();
+        urlWithoutQuery = urlWithoutQuery.split('/')[0]
          
         const domain = urlWithoutQuery
          
