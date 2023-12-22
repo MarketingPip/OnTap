@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Your website's meta description goes here" />
+    <title>Tap</title>
+    <link rel="stylesheet" href="https://unpkg.com/@primer/css/dist/primer.min.css" />
+  </head>
+   <style>
+  #versionTable {
+      width: 100%;
+      margin-top: 20px;
+    }
+
+    th, td {
+      text-align: center;
+      padding: 10px;
+    }
+
+    th {
+      background-color: #0366d6; /* Primer blue color */
+      color: #fff;
+    }
+
+    tr:nth-child(even) {
+      background-color: #f6f8fa; /* Primer gray background color */
+    }
+        .pagination {
+      display: flex;
+      justify-content: center;
+      margin-top: 20px;
+    }
+
+    .pagination button {
+      margin: 0 5px;
+      padding: 5px 10px;
+    }
+  </style>
+  <body>
+    <nav class="bg-gray-light p-3">
+      <div class="container-xl d-flex flex-items-center">
+        <a class="h4 mb-0 text-normal" href="#">Tap</a>
+        <div class="d-flex flex-auto"></div>
+        <ul class="d-flex list-style-none">
+          <li><a class="text-white mr-3" href="#">Home</a></li>
+          <li><a class="text-white mr-3" href="#">About</a></li>
+          <li><a class="text-white mr-3" href="#">Contact</a></li>
+             <li><a class="text-white mr-3" href="#">Contact</a></li>
+             <li><a class="text-white mr-3" href="#">Contact</a></li>
+        </ul>
+      </div>
+    </nav>
+
+    <div class="container-xl my-5">
+       <center>
+      <h1 class="f00-light">Your download should be starting shortly...</h1>
+     <div class="container-lg mx-auto py-6 p-responsive">
+
+    <h1>Version Information</h1>  
+   
+       <div class="m-4">
+ <button class="btn-mktg" type="button">Download</button>
+      </div>
+  <p>Latest Version: <span id="latestVersion"></span></p>
+  <p>Latest SHA: <span id="latestSHA"></span></p>
+
+  <table id="versionTable" class="border">
+    <thead class="bg-blue text-white">
+      <tr>
+        <th>Version</th>
+        <th>SHA</th>
+        <th>Download Link</th>
+      </tr>
+    </thead>
+    <tbody>
+      <!-- Add your table rows here -->
+    </tbody>
+    
+  </table>
+<div class="pagination">
+    <button class="btn btn-outline-primary">1</button>
+    <button class="btn btn-outline-primary">2</button>
+    <!-- Add more buttons as needed -->
+  </div>
+  </center>
+
+    
+</div>
+    
+
+    <footer class="border-top py-5 bg-gray-light">
+      <div class="container-xl">
+        <p class="text-center f5 text-gray-dark">Tap was originally created by Jared Van Valkengoed at <br> <a href="https://github.com/MarketingPipeline">MarketingPipeline</a>
+      </div>
+    </footer>
+       <script>
+    async function fetchAndPopulateTable() {
+      const table = document.getElementById("versionTable");
+
+      try {
+         const response = null
+        const data = {
+  "latest_version": "0.0.4",
+  "previous_versions": {
+    "0.0.1": {
+      "SHA": "45e512a8911e8c8dd4f5f82c76b83213c5c7456e"
+    },
+    "0.0.2": {
+      "SHA": "788c9732b6fcb7c186bd0e47c064f0157b7d4d50"
+    },
+    "0.0.3": {
+      "SHA": "755019fcf36ce548c60315ec88bbe9df82bf034a"
+    }
+  },
+  "latest_sha": "98ed7e0a3a26139f29f9660119585d0289d546f8"
+}
+
+        document.getElementById("latestVersion").textContent = data.latest_version;
+        document.getElementById("latestSHA").textContent = data.latest_sha;
+
+        const domain = window.location.origin;
+
+        const previousVersions = data.previous_versions;
+        for (const version in previousVersions) {
+          const row = table.insertRow();
+          const cellVersion = row.insertCell(0);
+          const cellSHA = row.insertCell(1);
+          const cellLink = row.insertCell(2);
+
+          cellVersion.textContent = version;
+          cellSHA.textContent = previousVersions[version].SHA;
+
+          // Create a download link for each version
+          const downloadLink = document.createElement("a");
+          downloadLink.href = `${domain}/downloads/${version}`;
+          downloadLink.textContent = "Download";
+          cellLink.appendChild(downloadLink);
+        }
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
+    }
+
+    fetchAndPopulateTable();
+  </script>
+  </body>
+</html> 
