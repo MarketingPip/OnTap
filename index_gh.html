@@ -125,17 +125,8 @@
         // Remove any query parameters from the URL
         let urlWithoutQuery = window.location.href;
 
-        urlWithoutQuery = urlWithoutQuery.split('?')[0]
-
-         if (window.location.origin.includes("github.io")) {
-
-         urlWithoutQuery =  urlWithoutQuery.split('/');  
-
-          urlWithoutQuery =  urlWithoutQuery.pop()
-
-           urlWithoutQuery =  urlWithoutQuery.join("") 
-
-         }
+        urlWithoutQuery = urlWithoutQuery.split('?')[0]  
+        urlWithoutQuery  = currentLocation.replace("index_gh.html", "").replace("index_gh", "");
          
         const domain = urlWithoutQuery
          
