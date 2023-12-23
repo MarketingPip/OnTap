@@ -680,18 +680,7 @@ function importMenu() {
 			    
 			if(invalidVersion){
                          throw new Error(invalidVersion) 
-			}
-
-
-                        const removeHiddenClass = async () => {
-			const displayMenu = document.querySelector('.display-menu')	
-	                displayMenu.classList.remove("hidden")	
-                        await delay(3000);
-        
-                        };	
-
-	                removeHiddenClass()	
-			    
+			}   
 			    
                         renderBeerMenu(); // renders the main menu
                     } catch (error) {
@@ -749,6 +738,16 @@ async function loadTemplate() {
 
 	 displayMenu.innerHTML =  mustache.render( MenuTemplate, beers).trim();
 
+                        const removeHiddenClass = async () => {
+			const displayMenu = document.querySelector('.display-menu')	
+	                displayMenu.classList.remove("hidden")	
+                        await delay(3000);
+        
+                        };	
+
+	                removeHiddenClass()	
+
+		
              // Update the beer menu
          document.querySelector('.main-menu').style.display = "none"		
            //displayMenu.classList.remove("hidden")
