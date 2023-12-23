@@ -1,16 +1,24 @@
 {{! Mustache Template }}
+ <!--- Start Of Menu --->
 	      <div class="max-w-4xl">
- 
+
+<!--- Marquee (DO NOT REMOVE) ---- >
   <div class="marquee-wrapper">   
         <div class="marquee">
-      <!--Dynamic items added here -->
+      <!--Marquee items are added here -->
 
     </div>
     </div>
-    <!-- Menu Title --->
-    <h1 class="text-4xl font-bold mb-8" id="MenuTitle">Currently on Tap</h1>
-    <!---   <div id="beerList" class="flex flex-wrap -mx-4 mb-4" style="overflow-x:hidden;"> --->
-    <div id="beerList" class="flex flex-wrap -mx-4" style="overflow-x:hidden;">
+<!--- END OF MARQUE -->
+
+    <!-- Menu Title (you must have a id set for 'MenuTitle' - REQUIRED --->
+    <h1 class="text-4xl font-bold mb-8" id="MenuTitle"></h1>
+    <!-- End of Marque Title --->
+   
+    <!---  Menu Items  --->
+    <div class="flex flex-wrap -mx-4 mb-4" style="overflow-x:hidden;">
+
+<!--- Menu Card Items ---- >
       <!-- Beer items will be added here dynamically -->
         {{#beers}}
     <div class="w-full md:w-1/2 lg:w-1/3 xl:w-1/4 px-4 mb-4">
@@ -23,9 +31,14 @@
                 {{#abv}}ABV: {{abv}}{{/abv}} {{#abv}}{{#ibu}}|{{/ibu}}{{/abv}} {{#ibu}}IBU: {{ibu}}{{/ibu}} {{#price}}{{#abv}}{{#ibu}}|{{/ibu}}{{/abv}}{{/price}} {{#price}}{{#abv}}{{#ibu}}{{/ibu}}{{/abv}}Price: {{price}}{{/price}}
             </p>
         </div>
+  
     </div>
-{{/beers}}
 
+{{/beers}}
+ <!--- End of Menu Card Items --->
       
     </div>
+ <!--- End of Menu tems --->
   </div>
+
+ <!--- End of Menu --->
