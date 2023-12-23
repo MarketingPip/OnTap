@@ -717,8 +717,10 @@ const loadTemplate = async () => {
       throw new Error(`Failed to load menu template. Status: ${response.status}`);
     }
 
-   MenuTemplate = await response.text();
+   const template = await response.text();
 
+   MenuTemplate = `${template}` // keep in string for mustache
+	  
   } catch (error) {
     throw error
   }
