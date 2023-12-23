@@ -708,7 +708,7 @@ function importMenu() {
 // Menu Template	
 let MenuTemplate = null;
 	
-const loadTemplate = async () => {
+async function loadTemplate() {
   try {
    
     const response = await fetch('./test.beer');
@@ -730,12 +730,12 @@ const loadTemplate = async () => {
 
 	
  // Function to render the beer menu
-        function renderBeerMenu() {
+        async function renderBeerMenu() {
 
 
 
 	// Call the loadTemplate function
-        loadTemplate();	
+        await loadTemplate();	
 		
 		
          const displayMenu = document.querySelector('.display-menu')
