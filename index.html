@@ -728,7 +728,7 @@ function importMenu() {
             beerList.innerHTML = '';
             const beers = beerMenu.kioskMenu
 
-            const DisplayTemplate = mustache.render(`{{! Mustache Template }}
+            const MenuTemplate = mustache.render(`{{! Mustache Template }}
 {{#beers}}
     <div class="w-full md:w-1/2 lg:w-1/3 xl:w-1/4 px-4 mb-4">
         <div class="bg-white p-6 rounded-lg shadow-md">
@@ -743,7 +743,8 @@ function importMenu() {
     </div>
 {{/beers}}`, beers).trim();
 
-		
+
+	beerList.innerHTML = MenuTempate	
 
              // Update the beer menu
          document.querySelector('.main-menu').style.display = "none"		
