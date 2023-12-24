@@ -767,6 +767,10 @@ function importMenu() {
 // Menu Template	
 let MenuTemplate = null;
 
+// Arrays to store scripts and stylesheets for later use
+const storedScripts = [];
+const storedStylesheets = [];
+
 async function loadTemplate() {
   try {
     const response = await fetch('./test.beer');
@@ -781,33 +785,55 @@ async function loadTemplate() {
     const tempDiv = document.createElement('div');
     tempDiv.innerHTML = htmlContent;
 
-    // Remove script elements
+    // Remove and store script elements
     const scriptElements = tempDiv.querySelectorAll('script');
     scriptElements.forEach(script => {
+      const scriptContent = script.text;
+      storedScripts.push(scriptContent);
+
+      // Remove the script element from the temporary div
       script.parentNode.removeChild(script);
-      // Optionally, load and execute the script
-      const newScript = document.createElement('script');
-      newScript.text = script.text;
-      document.head.appendChild(newScript);
     });
 
-    // Remove stylesheet elements
+    // Remove and store stylesheet elements
     const linkElements = tempDiv.querySelectorAll('link[rel="stylesheet"]');
     linkElements.forEach(link => {
+      const stylesheetHref = link.href;
+      storedStylesheets.push(stylesheetHref);
+
+      // Remove the link element from the temporary div
       link.parentNode.removeChild(link);
-      // Optionally, load the stylesheet
-      const newLink = document.createElement('link');
-      newLink.rel = 'stylesheet';
-      newLink.href = link.href;
-      document.head.appendChild(newLink);
     });
 
     // Set the modified HTML content to MenuTemplate
-    MenuTemplate = `${tempDiv.innerHTML}` // keep in string for mustache;
+    MenuTemplate = `${tempDiv.innerHTML}`;
   } catch (error) {
     throw error;
   }
 }
+
+function loadStoredScripts() {
+  storedScripts.forEach(scriptContent => {
+    // Optionally, load and execute each script
+    const newScript = document.createElement('script');
+    newScript.text = scriptContent;
+    document.head.appendChild(newScript);
+  });
+}
+
+function loadStoredStylesheets() {
+  storedStylesheets.forEach(stylesheetHref => {
+    // Optionally, load each stylesheet
+    const newLink = document.createElement('link');
+    newLink.rel = 'stylesheet';
+    newLink.href = stylesheetHref;
+    document.head.appendChild(newLink);
+  });
+}
+
+
+
+	
 	
 
 
@@ -833,6 +859,11 @@ async function loadTemplate() {
 
 	 displayMenu.innerHTML =  mustache.render( MenuTemplate, beers).trim();
 
+
+                       // Load stored scripts and stylesheets
+                        loadStoredScripts();
+                        loadStoredStylesheets();
+		
                         const removeHiddenClass = async () => {
 			const displayMenu = document.querySelector('.display-menu')	
 	                displayMenu.classList.remove("hidden")	
