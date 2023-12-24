@@ -1,4 +1,4 @@
-export async function fetchAndParseTemplates() {
+export async function fetchTemplates() {
   try {
     // Fetch the content of "templates.txt" file
     const response = await fetch('./templates.txt');
