@@ -766,24 +766,49 @@ function importMenu() {
 	
 // Menu Template	
 let MenuTemplate = null;
-	
+
 async function loadTemplate() {
   try {
-   
     const response = await fetch('./test.beer');
 
     if (!response.ok) {
       throw new Error(`Failed to load menu template. Status: ${response.status}`);
     }
 
-   const template = await response.text();
+    const htmlContent = await response.text();
 
-   MenuTemplate = `${template}` // keep in string for mustache
-	  
+    // Create a temporary div to parse the HTML content
+    const tempDiv = document.createElement('div');
+    tempDiv.innerHTML = htmlContent;
+
+    // Remove script elements
+    const scriptElements = tempDiv.querySelectorAll('script');
+    scriptElements.forEach(script => {
+      script.parentNode.removeChild(script);
+      // Optionally, load and execute the script
+      const newScript = document.createElement('script');
+      newScript.text = script.text;
+      document.head.appendChild(newScript);
+    });
+
+    // Remove stylesheet elements
+    const linkElements = tempDiv.querySelectorAll('link[rel="stylesheet"]');
+    linkElements.forEach(link => {
+      link.parentNode.removeChild(link);
+      // Optionally, load the stylesheet
+      const newLink = document.createElement('link');
+      newLink.rel = 'stylesheet';
+      newLink.href = link.href;
+      document.head.appendChild(newLink);
+    });
+
+    // Set the modified HTML content to MenuTemplate
+    MenuTemplate = `${tempDiv.innerHTML}` // keep in string for mustache;
   } catch (error) {
-    throw error
+    throw error;
   }
-};
+}
+	
 
 
 
