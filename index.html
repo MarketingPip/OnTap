@@ -733,7 +733,7 @@ function importMenu() {
 
         const reader = new FileReader();
 
-        reader.onload = function (e) {
+        reader.onload = async function (e) {
             try {
                 const importedData = JSON.parse(e.target.result);
                 // Validate the JSON schema here if needed
@@ -754,7 +754,7 @@ function importMenu() {
                     throw new Error(invalidVersion);
                 }
 
-                renderBeerMenu(); // renders the main menu
+                await renderBeerMenu(); // renders the main menu
             } catch (error) {
                 // Handle errors, you can log to console or display an alert
                 alert(error.message);
@@ -890,7 +890,6 @@ function loadStoredStylesheets() {
  // Function to render the beer menu
         async function renderBeerMenu() {
 
-	try{
 
 	// Call the loadTemplate function
         await loadTemplate();	
@@ -947,9 +946,6 @@ function loadStoredStylesheets() {
                 behavior: 'smooth'
             });		
 
-	  }catch(err){
-             throw err
-	   }
 		
         }
 
