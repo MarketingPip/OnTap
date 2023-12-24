@@ -5,8 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./assets/tailwind.css">
     <script type="module">
-	 import * as utils from './assets/js/utils/index.js';
+import * as utils from './assets/js/utils/index.js';
 
+import * as main_screen from './assets/js/main_screen/index.js';
+	    
 import mustache from "https://esm.sh/mustache"	
 
 window.mustache = mustache	    
@@ -21,7 +23,9 @@ window.validateVersion = utils.validateVersion
 	    
 window.showOverlay = utils.showOverlay	
 
-window.hideOverlay = utils.hideOverlay		    
+window.hideOverlay = utils.hideOverlay	
+
+window.fetchTemplates = main_screen.fetchTemplates	    
 	
 //func1(); // Function 1 from module1
     </script>		
@@ -1090,10 +1094,13 @@ const delay = ms => new Promise(res => setTimeout(res, ms))
 
 
         // Window onload event to ensure all scripts are loaded
-        window.onload = function () {
+        window.onload = async function () {
             removeLoader(true); // true flag - sets update checks.  
 
-	
+	    try{
+            const templateOptions = await fetchAndParseTemplates();
+            console.log('Template options:', templateOptions);
+		
          // Ensure page is at top
 
 	  document.body.scrollTo({
@@ -1104,6 +1111,10 @@ const delay = ms => new Promise(res => setTimeout(res, ms))
           if(parseUrlQuery().show === "tutorial"){
             toggleSlide()
           }
+
+	    }catch(err){
+             alert(err.message)
+	    }
 	  
         };
 
