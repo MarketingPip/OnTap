@@ -515,13 +515,13 @@ window.hideOverlay = utils.hideOverlay
 </body>
 <script>
 
-	const version = "1.0.0"
+const version = "1.0.0"
 
 const versionElements = document.querySelectorAll(".version-num");
 
-versionElements.forEach(function(element) {
+versionElements.forEach((element) => {
     element.innerHTML = version;
-});
+});	
 
 let beerMenu;
 
@@ -772,18 +772,34 @@ const storedScripts = [];
 const storedStylesheets = [];
 
 async function loadTemplate() {
-  try {
-    const response = await fetch('./test.beer');
+    try {
+        const response = await fetch('./test.beer');
 
-    if (!response.ok) {
-      throw new Error(`Failed to load menu template. Status: ${response.status}`);
-    }
+        if (!response.ok) {
+            throw new Error(`Failed to load menu template. Status: ${response.status}`);
+        }
 
-    const htmlContent = await response.text();
+        const htmlContent = await response.text();
 
-    // Create a temporary div to parse the HTML content
-    const tempDiv = document.createElement('div');
-    tempDiv.innerHTML = htmlContent;
+        // Create a temporary div to parse the HTML content
+        const tempDiv = document.createElement('div');
+        tempDiv.innerHTML = htmlContent;
+
+        // Extract version number from a specific HTML element
+        const versionElement = tempDiv.querySelector('version-number');
+
+        if (!versionElement) {
+            throw new Error('Version number not found in the template.');
+        }
+
+        const versionNumber = versionElement.textContent.trim();
+
+        if (versionNumber !== '1.0.0') {
+            throw new Error(`Invalid version number: ${versionNumber}. Expected version: 1.0.0`);
+        }
+
+        // Remove the version-number element from the temporary div
+        versionElement.parentNode.removeChild(versionElement);
 
     // Remove and store script elements
     const scriptElements = tempDiv.querySelectorAll('script');
@@ -886,7 +902,7 @@ function loadStoredStylesheets() {
          
             const beers = beerMenu.kioskMenu
 
- console.log(MenuTemplate)
+
 
 
 	 displayMenu.innerHTML =  mustache.render( MenuTemplate, beers).trim();
