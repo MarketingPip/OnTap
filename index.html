@@ -1098,7 +1098,7 @@ const delay = ms => new Promise(res => setTimeout(res, ms))
             removeLoader(true); // true flag - sets update checks.  
 
 	    try{
-            const templateOptions = await fetchAndParseTemplates();
+            const templateOptions = await fetchTemplates();
             console.log('Template options:', templateOptions);
 		
          // Ensure page is at top
