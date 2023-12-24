@@ -789,7 +789,23 @@ async function loadTemplate() {
     const scriptElements = tempDiv.querySelectorAll('script');
     scriptElements.forEach(script => {
       const scriptContent = script.text;
-      storedScripts.push(scriptContent);
+      const isModule = script.type === 'module';
+
+      if (script.src) {
+        // If script has src attribute, store it for later use
+        storedScripts.push({
+          src: script.src,
+          type: script.type,
+          isModule: isModule
+        });
+      } else {
+        // If inline script, store for later use
+        storedScripts.push({
+          content: scriptContent,
+          type: script.type,
+          isModule: isModule
+        });
+      }
 
       // Remove the script element from the temporary div
       script.parentNode.removeChild(script);
@@ -813,10 +829,30 @@ async function loadTemplate() {
 }
 
 function loadStoredScripts() {
-  storedScripts.forEach(scriptContent => {
-    // Optionally, load and execute each script
+  storedScripts.forEach(scriptInfo => {
+    const { content, src, type, isModule } = scriptInfo;
+
+    // Create a new script element
     const newScript = document.createElement('script');
-    newScript.text = scriptContent;
+
+    // Set script content or src attribute
+    if (src) {
+      newScript.src = src;
+    } else {
+      newScript.text = content;
+    }
+
+    // Set type if available
+    if (type) {
+      newScript.type = type;
+    }
+
+    // Set 'module' attribute for ECMAScript modules
+    if (isModule) {
+      newScript.type = 'module';
+    }
+
+    // Append the script to the head
     document.head.appendChild(newScript);
   });
 }
@@ -831,10 +867,6 @@ function loadStoredStylesheets() {
   });
 }
 
-
-
-	
-	
 
 
 
