@@ -584,11 +584,7 @@ closeModalButton.removeEventListener('click',  ModalHandler);
 
 
 	function loadMenuModal(){
-openModal('Reporting an Issue or Requesting a Feature', `
-
-<div id="donate-beer-modal" role="main" class="bg-white p-6 rounded-md shadow-md">
-    <!-- Existing content -->
-
+openModal('Load Menu', `
     <label for="fileInput" class="text-lg font-medium mb-2">Choose a File:</label>
     <input type="file" id="fileInput" class="w-full border border-gray-300 p-2 rounded-md mb-4" accept=".json" />
     <p id="fileError" class="text-red-500 text-sm mb-4 hidden">Please choose a menu file.</p>
@@ -605,20 +601,18 @@ openModal('Reporting an Issue or Requesting a Feature', `
 
     <div class="flex flex-col md:flex-row justify-end space-y-4 md:space-y-0 md:space-x-4">
        
-            <button   class="import-menu w-full md:w-auto inline-flex items-center justify-center font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 hover:bg-primary/90 h-10 text-white text-lg md:text-xl p-2 md:p-4 rounded-lg bg-green-500">
+            <button  class="import-menu w-full md:w-auto inline-flex items-center justify-center font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 hover:bg-primary/90 h-10 text-white text-lg md:text-xl p-2 md:p-4 rounded-lg bg-green-500">
                 Load
             </button>
         
         <button onclick="hideModal()" class="w-full md:w-auto inline-flex items-center justify-center font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 hover:bg-gray-300 h-10 text-white text-lg md:text-xl p-2 md:p-4 rounded-lg bg-gray-500">
-            No, I'll do it later
+            Cancel
         </button>
     </div>
 
-</div>
 
 
-
-`, 'You can report an issue on GitHub by clicking');
+`);
 		
 	}
 	
@@ -698,7 +692,7 @@ openModal('Reporting an Issue or Requesting a Feature', `
 </div>
 
 
-`, 'You can report an issue on GitHub by clicking');
+`);
   
     });
 
@@ -732,50 +726,44 @@ openModal('Reporting an Issue or Requesting a Feature', `
 	
   // Import Menu
 function importMenu() {
-        const fileInput = document.createElement('input');
-        fileInput.type = 'file';
-        fileInput.accept = '.json';
-        fileInput.addEventListener('change', handleFileSelect);
-        fileInput.click();
+    // Get the existing file input element by its id
+    const fileInput = document.getElementById('fileInput');
 
-        function handleFileSelect(event) {
-            const file = event.target.files[0];
+        const file = fileInput.files[0];
 
-            if (file) {
-                const reader = new FileReader();
+        const reader = new FileReader();
 
-                reader.onload = function (e) {
-                    try {
-                        const importedData = JSON.parse(e.target.result);
-                        // Validate the JSON schema here if needed
+        reader.onload = function (e) {
+            try {
+                const importedData = JSON.parse(e.target.result);
+                // Validate the JSON schema here if needed
 
-                      
-                        beerMenu = importedData;
-			  if(importedData.programName != "BeerKiosk" && !importedData.kioskMenu){
-              throw new Error("Invalid file or corrupt menu file. Please check the file format.")            
-                        }  
-			   if(importedData.kioskMenu.beers.length === 0){
-              throw new Error("No items in menu file to render...")            
-                        }
+                beerMenu = importedData;
 
-                       const invalidVersion = validateVersion(importedData.version).error  
-			    
-			if(invalidVersion){
-                         throw new Error(invalidVersion) 
-			}   
-			    
-                        renderBeerMenu(); // renders the main menu
-                    } catch (error) {
-                     //   console.error('Error importing JSON:', error.message);
-                        alert(error.message);
-                    }
-                };
+                if (importedData.programName !== "BeerKiosk" && !importedData.kioskMenu) {
+                    throw new Error("Invalid file or corrupt menu file. Please check the file format.");
+                }
 
-                reader.readAsText(file);
+                if (importedData.kioskMenu.beers.length === 0) {
+                    throw new Error("No items in the menu file to render...");
+                }
+
+                const invalidVersion = validateVersion(importedData.version).error;
+
+                if (invalidVersion) {
+                    throw new Error(invalidVersion);
+                }
+
+                renderBeerMenu(); // renders the main menu
+            } catch (error) {
+                // Handle errors, you can log to console or display an alert
+                alert(error.message);
             }
-        }
-    }
+        };
 
+        reader.readAsText(file);
+}
+	
 // Menu Template	
 let MenuTemplate = null;
 	
