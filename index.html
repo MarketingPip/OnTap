@@ -890,7 +890,7 @@ function loadStoredStylesheets() {
  // Function to render the beer menu
         async function renderBeerMenu() {
 
-
+	try{
 
 	// Call the loadTemplate function
         await loadTemplate();	
@@ -946,7 +946,11 @@ function loadStoredStylesheets() {
                 top: 0,
                 behavior: 'smooth'
             });		
-     //   
+
+	  }catch(err){
+             throw err
+	   }
+		
         }
 
 
