@@ -626,26 +626,46 @@ openModal('Reporting an Issue or Requesting a Feature', `
 	
 	
     // Add event listener for Load Menu button
+ function registerImportBtn() {
+    // Define the click handler function
+    function importBtnClickHandler() {
+        const fileInput = document.getElementById('fileInput');
+        const fileError = document.getElementById('fileError');
+
+        // Check if the file input is empty
+        if (fileInput.files.length === 0) {
+            fileError.classList.remove("hidden");
+            return; // Prevent redirection if validation fails
+        } else {
+            fileError.classList.add("hidden");
+            fileError.style.display = 'none';
+            importMenu();
+
+            // Remove the event listener after handling the click
+            unregisterImportBtn();
+        }
+    }
+
+    // Add event listener
+    document.querySelector('.import-menu').addEventListener('click', importBtnClickHandler);
+
+    // Return a function to remove the event listener (for later -Jared NOTES)
+    function unregisterImportBtn() {
+        document.querySelector('.import-menu').removeEventListener('click', importBtnClickHandler);
+    }
+
+}
+
+	    
+	
+
+	
     document.querySelector('.load-a-menu').addEventListener('click', function() {
      loadMenuModal()
   
     });
 	
-    document.querySelector('.import-menu').addEventListener('click', function() {
-          const fileInput = document.getElementById('fileInput');
-            const fileError = document.getElementById('fileError');
 
-            // Check if the file input is empty
-            if (fileInput.files.length === 0) {
-                fileError.classList.remove("hidden")
-                return; // Prevent redirection if validation fails
-            } else {
-		fileError.classList.add("hidden")    
-                fileError.style.display = 'none';
-		importMenu()
-            }	    
-    
-    });
 
     document.querySelector('.edit-menu').addEventListener('click', function() {
      openModal('You are now being redirected to the menu editor', ' <p id="redirect" class="mb-4">Redirecting in 3 seconds...</p>', false);
