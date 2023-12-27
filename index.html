@@ -817,6 +817,9 @@ const storedScripts = [];
 const storedStylesheets = [];
 
 async function loadTemplate(templateName) {
+
+const TemplateError = document.getElementById('templateError');  	
+	
     try {
         const response = await fetch(`./${templateName}.html`);
 
@@ -885,11 +888,14 @@ async function loadTemplate(templateName) {
     // Set the modified HTML content to MenuTemplate
     MenuTemplate = `${tempDiv.innerHTML}`;
 
+   TemplateError.classList.add("hidden");	    
+
     await renderBeerMenu(); // renders the main menu
 	    
   } catch (error) {
-   const TemplateError = document.getElementById('templateError');    	
-		
+     	
+   TemplateError.classList.remove("hidden");
+	    
 	    
    TemplateError.innerHTML = error.message
   }
