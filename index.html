@@ -605,7 +605,7 @@ function generateTemplateSelectHTML() {
   App_Settings.templateOptions.forEach((template) => {
     const option = document.createElement('option');
     option.value = template;
-    option.textContent = `Template ${template.charAt(template.length - 1)}`;
+    option.textContent = `Template ${template}`;
     templateSelect.appendChild(option);
   });
 
@@ -1129,7 +1129,6 @@ const delay = ms => new Promise(res => setTimeout(res, ms))
 
 	   App_Settings.templateOptions = fetchedMenuTemplates	    
 		    
-            console.log('Template options:', templateOptions);
 		
          // Ensure page is at top
 
