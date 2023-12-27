@@ -656,7 +656,27 @@ openModal('Load Menu', `
         const fileInput = document.getElementById('fileInput');
         const fileError = document.getElementById('fileError');
 
+       	let templateSelected = document.getElementById('templateSelect');    	
 
+	templateSelected = templateSelected.options[templateSelected.selectedIndex];	
+
+	templateSelected = templateSelected.value
+		    
+
+        const TemplateError = document.getElementById('templateError');  		    	
+	// Call the loadTemplate function
+	
+	try{
+	TemplateError.classList.add("hidden");	
+        await loadTemplate(templateSelected);	
+	}catch(error){
+      
+         TemplateError.classList.remove("hidden");
+	    
+	    
+         TemplateError.innerHTML = error.message
+	}
+	    
 	//console.log(fileInput.files.length)    
 	    
         // Check if the file input is empty
@@ -787,17 +807,7 @@ function importMenu() {
 
 
 
-	       let templateSelected = document.getElementById('templateSelect');    	
-
-	       templateSelected = templateSelected.options[templateSelected.selectedIndex];	
-
-	       templateSelected = templateSelected.value
-		    
-
-	       // Call the loadTemplate function
-	
-		
-                await loadTemplate(templateSelected);		    
+    
 		    
 
             } catch (error) {
@@ -818,7 +828,7 @@ const storedStylesheets = [];
 
 async function loadTemplate(templateName) {
 
-const TemplateError = document.getElementById('templateError');  	
+
 	
     try {
         const response = await fetch(`./${templateName}.html`);
@@ -888,16 +898,10 @@ const TemplateError = document.getElementById('templateError');
     // Set the modified HTML content to MenuTemplate
     MenuTemplate = `${tempDiv.innerHTML}`;
 
-   TemplateError.classList.add("hidden");	    
-
     await renderBeerMenu(); // renders the main menu
 	    
   } catch (error) {
-     	
-   TemplateError.classList.remove("hidden");
-	    
-	    
-   TemplateError.innerHTML = error.message
+	throw(error)
   }
 }
 
