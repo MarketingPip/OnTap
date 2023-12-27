@@ -653,6 +653,9 @@ openModal('Load Menu', `
         const fileInput = document.getElementById('fileInput');
         const fileError = document.getElementById('fileError');
 
+
+	console.log(fileInput.files.length)    
+	    
         // Check if the file input is empty
         if (fileInput.files.length === 0) {
             fileError.classList.remove("hidden");
