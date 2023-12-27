@@ -624,6 +624,7 @@ openModal('Load Menu', `
     <label for="templateSelect" class="text-lg font-medium mb-2">Select a Template:</label>
     ${generateTemplateSelectHTML()}
 
+
     <!-- Existing content -->
 
     <div class="flex flex-col md:flex-row justify-end space-y-4 md:space-y-0 md:space-x-4">
@@ -869,7 +870,10 @@ async function loadTemplate(templateName) {
     // Set the modified HTML content to MenuTemplate
     MenuTemplate = `${tempDiv.innerHTML}`;
   } catch (error) {
-    throw error;
+   const TemplateError = document.getElementById('templateError');    	
+		
+	    
+   TemplateError.innerHTML = error.message
   }
 }
 
