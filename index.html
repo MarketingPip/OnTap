@@ -623,8 +623,10 @@ openModal('Load Menu', `
 
     <label for="templateSelect" class="text-lg font-medium mb-2">Select a Template:</label>
     ${generateTemplateSelectHTML()}
+    
+    <p id="templateError" class="text-red-500 text-sm mb-4 hidden">Please choose a menu file.</p>
 
-
+    
     <!-- Existing content -->
 
     <div class="flex flex-col md:flex-row justify-end space-y-4 md:space-y-0 md:space-x-4">
