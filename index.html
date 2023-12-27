@@ -597,7 +597,7 @@ function generateTemplateSelectHTML() {
 
   // Add default template option
   const defaultOption = document.createElement('option');
-  defaultOption.value = App_Settings.defaultTemplate;
+  defaultOption.value = "default";
   defaultOption.textContent = 'Default Template';
   templateSelect.appendChild(defaultOption);
 
@@ -800,7 +800,7 @@ const storedStylesheets = [];
 
 async function loadTemplate(templateName) {
     try {
-        const response = await fetch(`./${templateName}`);
+        const response = await fetch(`./${templateName}.html`);
 
         if (!response.ok) {
             throw new Error(`Failed to load menu template:${templateName}. Status: ${response.status}`);
