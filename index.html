@@ -661,9 +661,6 @@ openModal('Load Menu', `
             fileError.classList.add("hidden");
             fileError.style.display = 'none';
             importMenu();
-
-            // Remove the event listener after handling the click
-            unregisterImportBtn();
         }
     }
 
@@ -782,6 +779,7 @@ function importMenu() {
                 }
 
                 await renderBeerMenu(); // renders the main menu
+
             } catch (error) {
                 // Handle errors, you can log to console or display an alert
                 alert(error.message);
@@ -980,6 +978,12 @@ function loadStoredStylesheets() {
                 behavior: 'smooth'
             });		
 
+
+
+	
+	     // Remove the event listener (to do - remove all event listeners for main screen)
+             unregisterImportBtn();    	
+		
 		
         }
 
