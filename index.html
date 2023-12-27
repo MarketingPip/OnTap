@@ -518,7 +518,10 @@ window.fetchTemplates = main_screen.fetchTemplates
   
 </body>
 <script>
-
+const App_Settings = {
+	templateOptions:[]
+}	
+	
 const version = "1.0.0"
 
 const versionElements = document.querySelectorAll(".version-num");
@@ -586,6 +589,31 @@ closeModalButton.removeEventListener('click',  ModalHandler);
 
 
 
+// Function to generate the HTML string for the templateSelect element
+function generateTemplateSelectHTML() {
+  const templateSelect = document.createElement('select');
+  templateSelect.id = 'templateSelect';
+  templateSelect.className = 'w-full border border-gray-300 p-2 rounded-md mb-4';
+
+  // Add default template option
+  const defaultOption = document.createElement('option');
+  defaultOption.value = App_Settings.defaultTemplate;
+  defaultOption.textContent = 'Default Template';
+  templateSelect.appendChild(defaultOption);
+
+  // Populate select options from App_Settings.templateOptions
+  App_Settings.templateOptions.forEach((template) => {
+    const option = document.createElement('option');
+    option.value = template;
+    option.textContent = `Template ${template.charAt(template.length - 1)}`;
+    templateSelect.appendChild(option);
+  });
+
+  // Convert the select element to an HTML string
+  const templateSelectHTML = templateSelect.outerHTML;
+  return templateSelectHTML;
+}	
+
 
 	function loadMenuModal(){
 openModal('Load Menu', `
@@ -594,12 +622,7 @@ openModal('Load Menu', `
     <p id="fileError" class="text-red-500 text-sm mb-4 hidden">Please choose a menu file.</p>
 
     <label for="templateSelect" class="text-lg font-medium mb-2">Select a Template:</label>
-    <select id="templateSelect" class="w-full border border-gray-300 p-2 rounded-md mb-4">d
-        <option value="template1">Template 1</option>
-        <option value="template2">Template 2</option>
-        <option value="template3">Template 3</option>
-        <!-- Add more options as needed -->
-    </select>
+    ${generateTemplateSelectHTML()}
 
     <!-- Existing content -->
 
@@ -775,12 +798,12 @@ let MenuTemplate = null;
 const storedScripts = [];
 const storedStylesheets = [];
 
-async function loadTemplate() {
+async function loadTemplate(templateName) {
     try {
-        const response = await fetch('./test.beer');
+        const response = await fetch(`./${templateName}`);
 
         if (!response.ok) {
-            throw new Error(`Failed to load menu template. Status: ${response.status}`);
+            throw new Error(`Failed to load menu template:${templateName}. Status: ${response.status}`);
         }
 
         const htmlContent = await response.text();
@@ -896,7 +919,11 @@ function loadStoredStylesheets() {
 
 
 	// Call the loadTemplate function
-        await loadTemplate();	
+
+	const templateSelected = document.getElementById('templateSelect');    	
+
+		
+        await loadTemplate(templateSelected);	
 		
 		
          const displayMenu = document.querySelector('.display-menu')
@@ -1098,7 +1125,10 @@ const delay = ms => new Promise(res => setTimeout(res, ms))
             removeLoader(true); // true flag - sets update checks.  
 
 	    try{
-            const templateOptions = await fetchTemplates();
+            const fetchedMenuTemplates = await fetchTemplates();
+
+	   App_Settings.templateOptions = fetchedMenuTemplates	    
+		    
             console.log('Template options:', templateOptions);
 		
          // Ensure page is at top
