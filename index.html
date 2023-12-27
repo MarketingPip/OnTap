@@ -654,11 +654,12 @@ openModal('Load Menu', `
         const fileError = document.getElementById('fileError');
 
 
-	console.log(fileInput.files.length)    
+	//console.log(fileInput.files.length)    
 	    
         // Check if the file input is empty
         if (fileInput.files.length === 0) {
             fileError.classList.remove("hidden");
+		console.log("removed")
             return; // Prevent redirection if validation fails
         } else {
             fileError.classList.add("hidden");
