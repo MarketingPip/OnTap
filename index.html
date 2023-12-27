@@ -920,8 +920,11 @@ function loadStoredStylesheets() {
 
 	// Call the loadTemplate function
 
-	const templateSelected = document.getElementById('templateSelect');    	
+	let templateSelected = document.getElementById('templateSelect');    	
 
+	templateSelected = templateSelected.options[templateSelected.selectedIndex];	
+
+	templateSelected = templateSelected.value	
 		
         await loadTemplate(templateSelected);	
 		
