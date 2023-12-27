@@ -12,7 +12,7 @@ export async function fetchTemplates() {
     const fileContent = await response.text();
 
     // Split the content into an array of options
-    const templateOptions = fileContent.split('\n').map(option => option.trim());
+    const templateOptions = fileContent.split('\n').map(option => option.trim()).filter(Boolean);
 
     return templateOptions;
   } catch (error) {
