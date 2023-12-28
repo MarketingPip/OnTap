@@ -572,12 +572,16 @@ window.hideOverlay = utils.hideOverlay
                 })
                 .catch(reason => {
 
-		if(reason != "Canceled"){	    	
+		if(reason != "Canceled" && reason != "No name was added!"){	    	
 	           showNotification('red', 'Error', reason);
+		} 
+
+		if(reason === "Canceled"){	
+			editModal.style.display = 'none';
 		}
                    // console.log(reason); // Log the reason (e.g., "Canceled")
                     // Close the modal
-                    editModal.style.display = 'none';
+                    
                 });
         }
 
