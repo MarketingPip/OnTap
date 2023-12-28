@@ -498,6 +498,8 @@ window.hideOverlay = utils.hideOverlay
     });
 
 
+       
+	    
         // Function to add a new beer to the menu
         function addBeer() {
             const newBeer = {
@@ -581,7 +583,7 @@ window.hideOverlay = utils.hideOverlay
 		   editModal.style.display = 'none';	
 	           showNotification('red', 'Error', reason);
 		}else{
-		   openEditModal(null, newBeer);
+		   addBeer()
 		}
                    // console.log(reason); // Log the reason (e.g., "Canceled")
                     // Close the modal
