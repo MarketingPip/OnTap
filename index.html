@@ -656,26 +656,7 @@ openModal('Load Menu', `
         const fileInput = document.getElementById('fileInput');
         const fileError = document.getElementById('fileError');
 
-       	let templateSelected = document.getElementById('templateSelect');    	
-
-	templateSelected = templateSelected.options[templateSelected.selectedIndex];	
-
-	templateSelected = templateSelected.value
-		    
-
-        const TemplateError = document.getElementById('templateError');  		    	
-	// Call the loadTemplate function
-	
-	try{
-	TemplateError.classList.add("hidden");	
-        await loadTemplate(templateSelected);	
-	}catch(error){
       
-         TemplateError.classList.remove("hidden");
-	    
-	    
-         TemplateError.innerHTML = error.message
-	}
 	    
 	//console.log(fileInput.files.length)    
 	    
@@ -780,12 +761,22 @@ function importMenu() {
     // Get the existing file input element by its id
     const fileInput = document.getElementById('fileInput');
 
+    let templateSelected = document.getElementById('templateSelect');    	
+
+    templateSelected = templateSelected.options[templateSelected.selectedIndex];	
+
+    templateSelected = templateSelected.value
+		    
+
+    const TemplateError = document.getElementById('templateError');  	
+
         const file = fileInput.files[0];
 
         const reader = new FileReader();
 
         reader.onload = async function (e) {
             try {
+		    
                 const importedData = JSON.parse(e.target.result);
                 // Validate the JSON schema here if needed
 
@@ -807,12 +798,22 @@ function importMenu() {
 
 
 
-    
-		    
+
+	        TemplateError.classList.add("hidden");	
+                await loadTemplate(templateSelected);	   
+
+
+		 await renderBeerMenu(); // renders the main menu	   
 
             } catch (error) {
-                // Handle errors, you can log to console or display an alert
-                alert(error.message);
+
+      
+         TemplateError.classList.remove("hidden");
+	    
+	    
+         TemplateError.innerHTML = error.message
+	
+
             }
         };
 
@@ -898,7 +899,7 @@ async function loadTemplate(templateName) {
     // Set the modified HTML content to MenuTemplate
     MenuTemplate = `${tempDiv.innerHTML}`;
 
-    await renderBeerMenu(); // renders the main menu
+  
 	    
   } catch (error) {
 	throw(error)
@@ -952,6 +953,7 @@ function loadStoredStylesheets() {
         async function renderBeerMenu() {
 
 
+	try{	
 
 		
 		
@@ -1012,6 +1014,10 @@ function loadStoredStylesheets() {
 	     // Remove the event listener (to do - remove all event listeners for main screen)
              unregisterImportBtn();    	
 		
+
+		}catch(error){
+              console.error(error.message)
+	     }
 		
         }
 
