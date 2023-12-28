@@ -675,15 +675,15 @@ openModal('Load Menu', `
     // Add event listener
     document.querySelector('.import-menu').addEventListener('click', importBtnClickHandler);
 
-    // Return a function to remove the event listener (for later -Jared NOTES)
-    function unregisterImportBtn() {
-        document.querySelector('.import-menu').removeEventListener('click', importBtnClickHandler);
-    }
+
 
 }
 
 	    
-	
+    // Return a function to remove the event listener (for later -Jared NOTES)
+    function unregisterImportBtn() {
+        document.querySelector('.import-menu').removeEventListener('click', importBtnClickHandler);
+    }	
 
 	
     document.querySelector('.load-a-menu').addEventListener('click', function() {
