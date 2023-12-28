@@ -518,8 +518,8 @@ window.hideOverlay = utils.hideOverlay
             const editForm = document.getElementById('editForm');
 
             // Set form values based on the beer data
-            const editNameInput = document.getElementById('editName').value 
-	   beer.name = editNameInput;
+            const editNameInput = document.getElementById('editName')
+	   beer.name = editNameInput.value;
 	  
             document.getElementById('editDescription').value = beer.description;
             document.getElementById('editABV').value = beer.abv;
