@@ -1234,11 +1234,11 @@ function parseUrlQuery() {
     const body = document.body;
 
  
-   exampleWrapper.classList.toggle("hide-display")
+   
 	  
 
     
-    exampleWrapper.style.visibility = "visible" ;
+   // exampleWrapper.style.visibility = "visible" ;
     
    exampleWrapper.classList.toggle('translate-y-full');
     //
@@ -1251,6 +1251,7 @@ function parseUrlQuery() {
         // Remove the event listener to avoid multiple calls
         exampleWrapper.removeEventListener('transitionend', handleTransitionEnd);
 
+	exampleWrapper.classList.toggle("hide-display")     
      //  exampleWrapper.classList.toggle('hidden');
        
 	     
