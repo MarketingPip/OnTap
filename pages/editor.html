@@ -454,15 +454,15 @@ window.hideOverlay = utils.hideOverlay
 
   function setCustomValidation(element){
 const HTML_Target_Element = document.querySelector(element);
-
+HTML_Target_Element.addEventListener("invalid", ({ target }) => {
   if(!HTML_Target_Element.value.trim()){	
-    HTML_Target_Element.setCustomValidity("Please fill this field");
+    target.setCustomValidity("Please fill this field");
   };
 
-
+});	
 	
 HTML_Target_Element.addEventListener("change", ({ target }) => {
-  HTML_Target_Element.setCustomValidity("");
+  target.setCustomValidity("");
 });
 
 
