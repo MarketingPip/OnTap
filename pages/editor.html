@@ -577,8 +577,11 @@ window.hideOverlay = utils.hideOverlay
                 })
                 .catch(reason => {
 
-		if(reason != "Canceled" && reason != 'No name was added!'){	    	
+		if(reason != "Canceled" && reason != 'No name was added!'){
+		   editModal.style.display = 'none';	
 	           showNotification('red', 'Error', reason);
+		}else{
+		   openEditModal(null, newBeer);
 		}
                    // console.log(reason); // Log the reason (e.g., "Canceled")
                     // Close the modal
