@@ -282,7 +282,7 @@ window.hideOverlay = utils.hideOverlay
         <div class="mb-4">
 <form id="editForm">
                     <label for="editName" class="block text-sm font-medium text-gray-600">Name</label>
-                    <input type="text" id="editName" name="editName"  pattern=".*\S+.*" title="This field is required" class="mt-1 p-2 border rounded-md w-full" required>
+                    <input type="text" id="editName" name="editName"  pattern=".*\S+.*" class="mt-1 p-2 border rounded-md w-full" required>
 
                     <label for="editDescription" class="block mt-4 text-sm font-medium text-gray-600">Description</label>
                     <textarea id="editDescription" name="editDescription" rows="3" class="mt-1 p-2 border rounded-md w-full"></textarea>
@@ -363,7 +363,7 @@ window.hideOverlay = utils.hideOverlay
           
           
             <label for="exportFilename" id="exportFileName" class="block text-sm font-medium text-gray-600">File Name</label>
-            <input type="text" id="exportFilename" name="exportFilename" class="mt-1 p-2 border rounded-md w-full" required pattern=".*\S+.*"  title="This field is required" placeholder="Enter filename without extension">
+            <input type="text" id="exportFilename" name="exportFilename" class="mt-1 p-2 border rounded-md w-full" required pattern=".*\S+.*" placeholder="Enter filename without extension">
 
           
           
@@ -451,6 +451,20 @@ window.hideOverlay = utils.hideOverlay
             // Add more beers as needed
         ];
 
+
+  function setCustomValidation(element){
+const HTML_Target_Element = document.querySelector(element);
+HTML_Target_Element.addEventListener("invalid", ({ target }) => {
+  target.setCustomValidity("Hello World!");
+});
+HTML_Target_Element.addEventListener("change", ({ target }) => {
+  target.setCustomValidity("");
+});
+
+
+  }  
+	    
+	    
            // Function to render the beer menu
     function renderBeerMenu() {
         beerList.innerHTML = '';
@@ -518,7 +532,8 @@ window.hideOverlay = utils.hideOverlay
             const editForm = document.getElementById('editForm');
 
             // Set form values based on the beer data
-            document.getElementById('editName').value = beer.name;
+            document.getElementById('editName').value = beer.name
+	    setCustomValidation('#editName')		    
             document.getElementById('editDescription').value = beer.description;
             document.getElementById('editABV').value = beer.abv;
             document.getElementById('editIBU').value = beer.ibu;
