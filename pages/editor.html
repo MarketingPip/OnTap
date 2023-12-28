@@ -530,6 +530,14 @@ HTML_Target_Element.addEventListener("change", ({ target }) => {
             openEditModal(null, newBeer);
         }
 
+
+       const escapeHTMLTextArea = document.createElement('textarea');
+       function escapeHTML(html) {
+        escapeHTMLTextArea.textContent = html;
+        return escapeHTMLTextArea.innerHTML;
+        }
+	    
+	    
         // Function to edit a beer in the menu
         function openEditModal(index, beer) {
             const editModal = document.getElementById('editModal');
@@ -553,10 +561,10 @@ HTML_Target_Element.addEventListener("change", ({ target }) => {
                     
                     // Get updated values from the form
                     const updatedBeer = {
-                        name: document.getElementById('editName').value.trim() || null,
-                        description: document.getElementById('editDescription').value.trim() || null,
-                        abv: document.getElementById('editABV').value.trim() || null,
-                        ibu: document.getElementById('editIBU').value.trim() || null,
+                        name: escapeHTML(document.getElementById('editName').value.trim()) || null,
+                        description: escapeHTML(document.getElementById('editDescription').value.trim()) || null,
+                        abv: escapeHTML(document.getElementById('editABV').value.trim()) || null,
+                        ibu: escapeHTML(document.getElementById('editIBU').value.trim()) || null,
                         price:                   document.getElementById('editPrice').value.trim() || null,
                     };
                     if(!updatedBeer.name){
