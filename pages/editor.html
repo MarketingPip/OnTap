@@ -282,7 +282,7 @@ window.hideOverlay = utils.hideOverlay
         <div class="mb-4">
 <form id="editForm">
                     <label for="editName" class="block text-sm font-medium text-gray-600">Name</label>
-                    <input type="text" id="editName" name="editName" class="mt-1 p-2 border rounded-md w-full" required>
+                    <input type="text" id="editName" name="editName" class="mt-1 p-2 border rounded-md w-full" required pattern=".*\S+.*">
 
                     <label for="editDescription" class="block mt-4 text-sm font-medium text-gray-600">Description</label>
                     <textarea id="editDescription" name="editDescription" rows="3" class="mt-1 p-2 border rounded-md w-full"></textarea>
@@ -536,14 +536,8 @@ HTML_Target_Element.addEventListener("change", ({ target }) => {
             const editForm = document.getElementById('editForm');
 
             // Set form values based on the beer data
-            const editName = document.getElementById('editName')
-
-		
-            editName.value = beer.name
-	    //setCustomValidation('#editName')
-
-            editName.setCustomValidity(""); 
-		
+            document.getElementById('editName').value = beer.name
+	    setCustomValidation('#editName')		    
             document.getElementById('editDescription').value = beer.description;
             document.getElementById('editABV').value = beer.abv;
             document.getElementById('editIBU').value = beer.ibu;
@@ -566,7 +560,7 @@ HTML_Target_Element.addEventListener("change", ({ target }) => {
                         price:                   document.getElementById('editPrice').value.trim() || null,
                     };
                     if(!updatedBeer.name){
-                      editName.setCustomValidity("Please fill this field");
+                     
                       reject('No name was added!')
                     }
                     resolve(updatedBeer);
