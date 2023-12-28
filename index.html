@@ -1234,16 +1234,9 @@ function parseUrlQuery() {
     const body = document.body;
 
  
-   exampleWrapper.classList.remove("hide-display")
+   exampleWrapper.classList.toggle("hide-display")
 	  
 
-	// removeHider() 
-
-  	  
-
-     
-	  
-    toggleSlideOpen = true
     
     exampleWrapper.style.visibility = "visible" ;
     
@@ -1258,50 +1251,16 @@ function parseUrlQuery() {
         // Remove the event listener to avoid multiple calls
         exampleWrapper.removeEventListener('transitionend', handleTransitionEnd);
 
-        // Add the 'hidden' class after the transition is complete
-       exampleWrapper.classList.remove('hidden');
+       exampleWrapper.classList.toggle('hidden');
        
 	     
     }
     
-    hideOverlay()
+    //hideOverlay()
     
   }
 
-  function closeSlide() {
-    const exampleWrapper = document.getElementById('exampleWrapper');
-   
-    // Add an event listener for the 'transitionend' event
-   // exampleWrapper.addEventListener('transitionend', handleTransitionEnd);
-    exampleWrapper.classList.add('translate-y-full');
-    
-    if(toggleSlideOpen){
-   showOverlay() 
-   toggleSlideOpen = false
-    }
-      // Function to handle the 'transitionend' event
-    function handleTransitionEnd() {
-        // Remove the event listener to avoid multiple calls
-           // Add the 'hidden' class after the transition is complete
-        exampleWrapper.classList.add('hidden');
-      
-      exampleWrapper.style.visibility = "hidden" ;
-
-
-const addHider = async () => {
-  await delay(300);
-   exampleWrapper.classList.add("hide-display")
-};	
-
-	 addHider()   
-      
-      exampleWrapper.removeEventListener('transitionend', handleTransitionEnd);
-
-    
-      
-    }
-    
-  }
+  
   
   
 
