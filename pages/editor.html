@@ -282,7 +282,7 @@ window.hideOverlay = utils.hideOverlay
         <div class="mb-4">
 <form id="editForm">
                     <label for="editName" class="block text-sm font-medium text-gray-600">Name</label>
-                    <input type="text" id="editName" name="editName"  pattern=".*\S+.*" class="mt-1 p-2 border rounded-md w-full" required>
+                    <input type="text" id="editName" name="editName" class="mt-1 p-2 border rounded-md w-full" required>
 
                     <label for="editDescription" class="block mt-4 text-sm font-medium text-gray-600">Description</label>
                     <textarea id="editDescription" name="editDescription" rows="3" class="mt-1 p-2 border rounded-md w-full"></textarea>
@@ -454,16 +454,15 @@ window.hideOverlay = utils.hideOverlay
 
   function setCustomValidation(element){
 const HTML_Target_Element = document.querySelector(element);
+HTML_Target_Element.addEventListener("invalid", ({ target }) => {
+  if(!HTML_Target_Element.value.trim()){	
+    target.setCustomValidity("Please fill this field");
+  };
 
+});	
 	
 HTML_Target_Element.addEventListener("change", ({ target }) => {
-
-   if(!HTML_Target_Element.value.trim()){	
-    target.setCustomValidity("Please fill this field");
-  } else{	
   target.setCustomValidity("");
-   }
-	   
 });
 
 
