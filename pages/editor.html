@@ -455,7 +455,8 @@ window.hideOverlay = utils.hideOverlay
   function setCustomValidation(element){
 const HTML_Target_Element = document.querySelector(element);
 HTML_Target_Element.addEventListener("invalid", ({ target }) => {
-  target.setCustomValidity("Hello World!");
+  if(!HTML_Target_Element.value.trim()){	
+  target.setCustomValidity("Please fill this field");
 });
 HTML_Target_Element.addEventListener("change", ({ target }) => {
   target.setCustomValidity("");
