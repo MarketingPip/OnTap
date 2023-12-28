@@ -498,8 +498,6 @@ window.hideOverlay = utils.hideOverlay
     });
 
 
-       
-	    
         // Function to add a new beer to the menu
         function addBeer() {
             const newBeer = {
@@ -520,9 +518,7 @@ window.hideOverlay = utils.hideOverlay
             const editForm = document.getElementById('editForm');
 
             // Set form values based on the beer data
-            const editNameInput = document.getElementById('editName')
-	   beer.name = editNameInput.value;
-	  
+            document.getElementById('editName').value = beer.name;
             document.getElementById('editDescription').value = beer.description;
             document.getElementById('editABV').value = beer.abv;
             document.getElementById('editIBU').value = beer.ibu;
@@ -545,12 +541,9 @@ window.hideOverlay = utils.hideOverlay
                         price:                   document.getElementById('editPrice').value.trim() || null,
                     };
                     if(!updatedBeer.name){
-                      editNameInput.setCustomValidity('No name was added!');
+                     
                       reject('No name was added!')
-                    }else{
-                        editNameInput.setCustomValidity('');
-		    }	    
-		    editNameInput.reportValidity();	    
+                    }
                     resolve(updatedBeer);
                 });
 
@@ -579,15 +572,12 @@ window.hideOverlay = utils.hideOverlay
                 })
                 .catch(reason => {
 
-		if(reason != "Canceled" || reason != 'No name was added!'){
-		   editModal.style.display = 'none';	
+		if(reason != "Canceled"){	    	
 	           showNotification('red', 'Error', reason);
-		}else{
-		   addBeer()
 		}
                    // console.log(reason); // Log the reason (e.g., "Canceled")
                     // Close the modal
-                    //editModal.style.display = 'none';
+                    editModal.style.display = 'none';
                 });
         }
 
