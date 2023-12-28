@@ -768,7 +768,7 @@ function importMenu() {
     templateSelected = templateSelected.value
 		    
 
-    const TemplateError = document.getElementById('templateError');  	
+   	
 
         const file = fileInput.files[0];
 
@@ -799,7 +799,7 @@ function importMenu() {
 
 
 
-	        TemplateError.classList.add("hidden");	
+			
                 await loadTemplate(templateSelected);	   
 
 
@@ -807,12 +807,13 @@ function importMenu() {
 
             } catch (error) {
 
-      
-         TemplateError.classList.remove("hidden");
-	    
-	    
-         TemplateError.innerHTML = error.message
-	
+
+		     const fileError = document.getElementById('fileError');
+
+	             fileError.classList.remove("hidden");
+
+		    fileError.innerHTML = error.message
+            // alert(error.message)
 
             }
         };
@@ -829,7 +830,8 @@ const storedStylesheets = [];
 
 async function loadTemplate(templateName) {
 
-
+ const TemplateError = document.getElementById('templateError');      
+ TemplateError.classList.add("hidden");
 	
     try {
         const response = await fetch(`./${templateName}.html`);
@@ -900,9 +902,14 @@ async function loadTemplate(templateName) {
     MenuTemplate = `${tempDiv.innerHTML}`;
 
   
-	    
+    await renderBeerMenu(); // renders the main menu		    
   } catch (error) {
-	throw(error)
+	
+      TemplateError.classList.remove("hidden");
+	    
+	    
+      TemplateError.innerHTML = error.message
+	
   }
 }
 
