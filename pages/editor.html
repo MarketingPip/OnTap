@@ -519,6 +519,7 @@ window.hideOverlay = utils.hideOverlay
 
             // Set form values based on the beer data
             document.getElementById('editName').value = beer.name;
+	  
             document.getElementById('editDescription').value = beer.description;
             document.getElementById('editABV').value = beer.abv;
             document.getElementById('editIBU').value = beer.ibu;
@@ -541,9 +542,12 @@ window.hideOverlay = utils.hideOverlay
                         price:                   document.getElementById('editPrice').value.trim() || null,
                     };
                     if(!updatedBeer.name){
-                     
+                      editNameInput.setCustomValidity(updatedBeer.name);
                       reject('No name was added!')
-                    }
+                    }else{
+                        editNameInput.setCustomValidity();
+		    }	    
+			    
                     resolve(updatedBeer);
                 });
 
