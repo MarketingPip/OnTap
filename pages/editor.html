@@ -543,12 +543,12 @@ window.hideOverlay = utils.hideOverlay
                         price:                   document.getElementById('editPrice').value.trim() || null,
                     };
                     if(!updatedBeer.name){
-                      editNameInput.setCustomValidity(updatedBeer.name);
+                      editNameInput.setCustomValidity('No name was added!');
                       reject('No name was added!')
                     }else{
-                        editNameInput.setCustomValidity();
+                        editNameInput.setCustomValidity('');
 		    }	    
-			    
+		    editNameInput.reportValidity();	    
                     resolve(updatedBeer);
                 });
 
@@ -577,12 +577,12 @@ window.hideOverlay = utils.hideOverlay
                 })
                 .catch(reason => {
 
-		if(reason != "Canceled"){	    	
+		if(reason != "Canceled" && reason != 'No name was added!'){	    	
 	           showNotification('red', 'Error', reason);
 		}
                    // console.log(reason); // Log the reason (e.g., "Canceled")
                     // Close the modal
-                    editModal.style.display = 'none';
+                    //editModal.style.display = 'none';
                 });
         }
 
