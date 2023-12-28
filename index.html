@@ -363,7 +363,7 @@ window.fetchTemplates = main_screen.fetchTemplates
 <!---- Tutorial Menu --->
 <div id="exampleWrapper" class="hide-display overflow-x-auto transition-transform duration-300 transform translate-y-full fixed inset-0 z-50 bg-gray-800 bg-opacity-50 scrollbars" tabindex="-1">
   <div>
-    <button onclick="toggleSlide()" class="absolute top-0 right-0 p-2 cursor-pointer focus:bg-accent focus:text-accent-foreground">
+    <button onclick="closeSlide()" class="absolute top-0 right-0 p-2 cursor-pointer focus:bg-accent focus:text-accent-foreground">
             <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
             </svg>
@@ -1234,11 +1234,18 @@ function parseUrlQuery() {
     const body = document.body;
 
  
-   
+   exampleWrapper.classList.remove("hide-display")
 	  
 
+	// removeHider() 
+
+  	  
+
+     
+	  
+    toggleSlideOpen = true
     
-   // exampleWrapper.style.visibility = "visible" ;
+    exampleWrapper.style.visibility = "visible" ;
     
    exampleWrapper.classList.toggle('translate-y-full');
     //
@@ -1251,17 +1258,50 @@ function parseUrlQuery() {
         // Remove the event listener to avoid multiple calls
         exampleWrapper.removeEventListener('transitionend', handleTransitionEnd);
 
-	exampleWrapper.classList.toggle("hide-display")     
-     //  exampleWrapper.classList.toggle('hidden');
+        // Add the 'hidden' class after the transition is complete
+       exampleWrapper.classList.remove('hidden');
        
 	     
     }
     
-    //hideOverlay()
+    hideOverlay()
     
   }
 
-  
+  function closeSlide() {
+    const exampleWrapper = document.getElementById('exampleWrapper');
+   
+    // Add an event listener for the 'transitionend' event
+   // exampleWrapper.addEventListener('transitionend', handleTransitionEnd);
+    exampleWrapper.classList.add('translate-y-full');
+    
+    if(toggleSlideOpen){
+   showOverlay() 
+   toggleSlideOpen = false
+    }
+      // Function to handle the 'transitionend' event
+    function handleTransitionEnd() {
+        // Remove the event listener to avoid multiple calls
+           // Add the 'hidden' class after the transition is complete
+        exampleWrapper.classList.add('hidden');
+      
+      exampleWrapper.style.visibility = "hidden" ;
+
+
+const addHider = async () => {
+  await delay(300);
+   exampleWrapper.classList.add("hide-display")
+};	
+
+	 addHider()   
+      
+      exampleWrapper.removeEventListener('transitionend', handleTransitionEnd);
+
+    
+      
+    }
+    
+  }
   
   
 
