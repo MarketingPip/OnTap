@@ -648,10 +648,7 @@ openModal('Load Menu', `
 	
 
 	
-	
-    // Add event listener for Load Menu button
- function registerImportBtn() {
-    // Define the click handler function
+
     async function importBtnClickHandler() {
         const fileInput = document.getElementById('fileInput');
         const fileError = document.getElementById('fileError');
@@ -671,7 +668,10 @@ openModal('Load Menu', `
             importMenu();
         }
     }
-
+	
+    // Add event listener for Load Menu button
+ function registerImportBtn() {
+    // Define the click handler function
     // Add event listener
     document.querySelector('.import-menu').addEventListener('click', importBtnClickHandler);
 
