@@ -927,7 +927,7 @@ async function loadStoredScripts() {
       
       await new Promise((resolve, reject) => {
         newScript.addEventListener('load', resolve);
-        //newScript.addEventListener('error', () => reject(new Error(`Failed to load ${src}`)));
+        newScript.addEventListener('error', () => console.log(`Failed to load ${src}`));
       });
     } else {
       newScript.text = content;
@@ -959,7 +959,7 @@ async function loadStoredStylesheets() {
 
 	    linkElement.onerror =
 	      () =>
-	       // reject(new Error(`Failed to load ${stylesheetHref}`));
+	       console.log(`Failed to load ${stylesheetHref}`);
 	  });
 
  	  document.head.append(linkElement);
