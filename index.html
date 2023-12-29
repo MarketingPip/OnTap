@@ -801,6 +801,10 @@ function importMenu() {
 			
                 const TemplateLoaded = await loadTemplate(templateSelected);	   
 
+		
+                // Load stored scripts and stylesheets
+                loadStoredScripts();
+                loadStoredStylesheets();    
 
 		 await renderBeerMenu(TemplateLoaded); // renders the main menu	   
 
@@ -915,63 +919,33 @@ let MenuTemplate = null;
   }
 }
 
-async function loadStoredScripts() {
-  await Promise.all(storedScripts.map(async (scriptInfo) => {
-    try {
-      const { content, src, type, isModule } = scriptInfo;
+function loadStoredScripts() {
+  storedScripts.forEach(scriptInfo => {
+    const { content, src, type, isModule } = scriptInfo;
 
-      // Create a new script element
-      const newScript = document.createElement('script');
+    // Create a new script element
+    const newScript = document.createElement('script');
 
-      // Set script content or src attribute
-      if (src) {
-        newScript.src = src;
-      } else {
-        newScript.text = content;
-      }
+    // Set script content or src attribute
+    if (src) {
+      newScript.src = src;
+    } else {
+      newScript.text = content;
+    }
 
-      // Set type if available
-      if (type) {
-        newScript.type = type;
-      }
+    // Set type if available
+    if (type) {
+      newScript.type = type;
+    }
 
-       // Set 'module' attribute for ECMAScript modules
-       if (isModule) {
-         newScript.type = 'module';
-       }
+    // Set 'module' attribute for ECMAScript modules
+    if (isModule) {
+      newScript.type = 'module';
+    }
 
-       // Promisify the onload event to handle success/failure cases
-       await new Promise((resolve, reject) => {
-
-         let timerId;  // Timer ID for handling timeouts
-
-         const handleError = () => {  // Error handler function
-           clearTimeout(timerId);  // Clear timeout when error occurs
-
-           console.error(`Error loading script: ${src}`);
-           resolve();  // Resolve promise even in case of error to continue with other scripts/stylesheets.
-         };
-
-         timerId = setTimeout(() => {  // Handle timeout case after specified time period (e.g. 10 seconds)
-           handleError();
-         }, 10000);
-
-          newScript.onload = () => {   // Success handler function on successful loading of the script.
-            clearTimeout(timerId);   //
-            resolve();
-          };
-
-          newScript.onerror= () =>{
-             handleError()
-          }
-     });
-
-     document.head.appendChild(newScript);
-   } catch(error){
-     console.error("An unexpected error occurred.", error);
-   }
- }));
-
+    // Append the script to the head
+    document.head.appendChild(newScript);
+  });
 }
 
 function loadStoredStylesheets() {
@@ -994,7 +968,7 @@ function loadStoredStylesheets() {
 
 	try{	
 
-	
+		
 		
          const displayMenu = document.querySelector('.display-menu')
          
@@ -1005,16 +979,9 @@ function loadStoredStylesheets() {
 
 
 
-		
-
 	 displayMenu.innerHTML =  mustache.render( MenuTemplate, beers).trim();
 
 
-
-                       // Load stored scripts and stylesheets
-                        await loadStoredScripts();
-                        await loadStoredStylesheets();	
-		
 		
                         const removeHiddenClass = async () => {
 			const displayMenu = document.querySelector('.display-menu')	
