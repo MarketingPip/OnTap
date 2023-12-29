@@ -799,10 +799,10 @@ function importMenu() {
 
 
 			
-                await loadTemplate(templateSelected);	   
+                const TemplateLoaded = await loadTemplate(templateSelected);	   
 
 
-		 await renderBeerMenu(); // renders the main menu	   
+		 await renderBeerMenu(TemplateLoaded); // renders the main menu	   
 
             } catch (error) {
 
@@ -820,8 +820,7 @@ function importMenu() {
         reader.readAsText(file);
 }
 	
-// Menu Template	
-let MenuTemplate = null;
+
 
 // Arrays to store scripts and stylesheets for later use
 const storedScripts = [];
@@ -829,6 +828,9 @@ const storedStylesheets = [];
 
 async function loadTemplate(templateName) {
 
+// Menu Template	
+let MenuTemplate = null;
+	
  const TemplateError = document.getElementById('templateError');      
  TemplateError.classList.add("hidden");
 	
@@ -900,8 +902,9 @@ async function loadTemplate(templateName) {
     // Set the modified HTML content to MenuTemplate
     MenuTemplate = `${tempDiv.innerHTML}`;
 
-  
-    await renderBeerMenu(); // renders the main menu		    
+    return MenuTemplate
+	    
+
   } catch (error) {
 	
       TemplateError.classList.remove("hidden");
@@ -956,7 +959,7 @@ function loadStoredStylesheets() {
 
 	
  // Function to render the beer menu
-        async function renderBeerMenu() {
+        async function renderBeerMenu(MenuTemplate) {
 
 
 	try{	
