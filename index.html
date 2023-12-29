@@ -915,55 +915,43 @@ let MenuTemplate = null;
   }
 }
 
-async function loadStoredScripts() {
-  for (const scriptInfo of storedScripts) {
+function loadStoredScripts() {
+  storedScripts.forEach(scriptInfo => {
     const { content, src, type, isModule } = scriptInfo;
 
+    // Create a new script element
     const newScript = document.createElement('script');
 
+    // Set script content or src attribute
     if (src) {
       newScript.src = src;
-      newScript.async = true;
-      
-      await new Promise((resolve, reject) => {
-        newScript.addEventListener('load', resolve);
-        newScript.addEventListener('error', () => console.log(`Failed to load ${src}`));
-      });
     } else {
       newScript.text = content;
     }
 
+    // Set type if available
     if (type) {
       newScript.type = type;
     }
 
-  	if (isModule) {
-    	newScript.type = 'module';
-  	}
+    // Set 'module' attribute for ECMAScript modules
+    if (isModule) {
+      newScript.type = 'module';
+    }
 
-  	document.head.appendChild(newScript);
-  }
+    // Append the script to the head
+    document.head.appendChild(newScript);
+  });
 }
 
-async function loadStoredStylesheets() {
-
-  for (const stylesheetHref of storedStylesheets) {
-
-	  const linkElement =
-	  	Object.assign(document.createElement("link"), { rel: "stylesheet", href: stylesheetHref });
-
-	  await new Promise((resolve, reject) => {
-
-	    linkElement.onload =
-	      () => resolve();
-
-	    linkElement.onerror =
-	      () =>
-	       console.log(`Failed to load ${stylesheetHref}`);
-	  });
-
- 	  document.head.append(linkElement);
-  	}
+function loadStoredStylesheets() {
+  storedStylesheets.forEach(stylesheetHref => {
+    // Optionally, load each stylesheet
+    const newLink = document.createElement('link');
+    newLink.rel = 'stylesheet';
+    newLink.href = stylesheetHref;
+    document.head.appendChild(newLink);
+  });
 }
 
 
@@ -991,8 +979,8 @@ async function loadStoredStylesheets() {
 
 
                        // Load stored scripts and stylesheets
-                        await loadStoredScripts();
-                        await loadStoredStylesheets();
+                        loadStoredScripts();
+                        loadStoredStylesheets();
 		
                         const removeHiddenClass = async () => {
 			const displayMenu = document.querySelector('.display-menu')	
