@@ -5,7 +5,27 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./assets/tailwind.css">
     <script type="module">
- 
+import * as utils from './assets/js/utils/index.js';
+
+import * as main_screen from './assets/js/main_screen/index.js';
+	    
+import mustache from "https://esm.sh/mustache"	
+
+window.mustache = mustache	    
+
+window.showNotification = utils.showNotification
+
+window.removeLoader = utils.removeLoader	    
+	    
+window.updateCheck = utils.updateCheck
+
+window.validateVersion = utils.validateVersion	    
+	    
+window.showOverlay = utils.showOverlay	
+
+window.hideOverlay = utils.hideOverlay	
+
+window.fetchTemplates = main_screen.fetchTemplates	    
 	
 //func1(); // Function 1 from module1
     </script>		
@@ -497,33 +517,7 @@
 </div>
   
 </body>
-<script type="module">
-
-import * as utils from './assets/js/utils/index.js';
-
-import * as main_screen from './assets/js/main_screen/index.js';
-	    
-import mustache from "https://esm.sh/mustache"	
-
-window.mustache = mustache	    
-
-window.showNotification = utils.showNotification
-
-window.removeLoader = utils.removeLoader	    
-	    
-window.updateCheck = utils.updateCheck
-
-window.validateVersion = utils.validateVersion	    
-	    
-window.showOverlay = utils.showOverlay	
-
-window.hideOverlay = utils.hideOverlay	
-
-window.fetchTemplates = main_screen.fetchTemplates	   	
-(async function() {	
-
-
-	
+<script>
 const App_Settings = {
 	templateOptions:[]
 }	
@@ -1334,8 +1328,6 @@ window.addEventListener('pageshow', function(event) {
     location.reload(true); // Reload the page
   }
 });
-
-})();	
 	
 </script>
 </html>
