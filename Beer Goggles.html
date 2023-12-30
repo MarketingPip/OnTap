@@ -200,10 +200,13 @@ if (typeof Bubbles !== 'undefined') {
   const observer = new MutationObserver(() => {
     if (typeof Bubbles !== 'undefined') {
       // Bubbles is defined, disconnect the observer and render
-      observer.disconnect();
+      console.log("wtf")
       sprite.onload = () => {  
-      renderBubbles();
-    };
+        renderBubbles();
+       };
+      
+      observer.disconnect();
+    
       
     }
   });
@@ -214,7 +217,7 @@ if (typeof Bubbles !== 'undefined') {
 
 function renderBubbles() {
 
-  bubbles = new Bubbles({
+  const bubbles = new Bubbles({
     canvasID: 'bubbles',
     sprite: sprite,
     spriteCount: 10,
