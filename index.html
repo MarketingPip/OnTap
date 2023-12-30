@@ -932,7 +932,6 @@ function loadResourcesInParallel(resourceList, resourceType) {
           newElement.src = src;
         } else {
           newElement.text = content;
-	  inLineScript = true
         }
         if (type) {
           newElement.type = type;
@@ -958,16 +957,16 @@ function loadResourcesInParallel(resourceList, resourceType) {
         resolve();
       };
 
-      newElement.onerror = () => {
-        cleanup();
-        console.error(`Failed to load ${resourceType}: ${src}`);
-      };
+   
 
     
         document.head.appendChild(newElement);
-        // Resolve and append inline scripts immediately
-        if(inLineScript === true){
-	resolve();      
+      
+        if(src){
+	    newElement.onerror = () => {
+            cleanup();
+            console.error(`Failed to load ${resourceType}: ${src}`);
+          };
 	}
 
       function cleanup() {
