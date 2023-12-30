@@ -188,49 +188,19 @@ h1 {
 <script src="https://keho.nl/mb/codepenfiles/brewerydb/Bubbels.js"></script>
 <script src="./script.js"></script>
 <script>
-
-let sprite = new Image();
-
-// Function to delay execution
-const delay = ms => new Promise(res => setTimeout(res, ms));
-
-// Function to asynchronously check if Bubbles is defined and of the correct type
-async function checkBubbles(attempt = 1) {
-  if (attempt <= 5 && typeof Bubbles !== 'undefined') {
-    // Bubbles is defined and of the correct type, render it
-    renderBubbles();
-  } else {
-    // Wait for 1 second before the next attempt
-    await delay(1000);
-    // Recursive call to continue checking
-    checkBubbles(attempt + 1);
+  let sprite = new Image();
+  sprite.onload = () => {
+    bubbles = new Bubbles({
+      canvasID: 'bubbles',
+      sprite: sprite,
+      spriteCount: 10,
+      bubbleDensity: 2,
+      bubbleSize: [3, 15],
+      bubbleVelocityY: [.5, 2],
+      bubbleOpacity: [.1, .2]
+    });
   }
-}
-
-async function renderBubbles() {
-  if (typeof Bubbles === 'undefined') {
-    console.error("Bubbles too long to load or not of the correct type...");
-    return;
-  }
-
-  bubbles = new Bubbles({
-    canvasID: 'bubbles',
-    sprite: sprite,
-    spriteCount: 10,
-    bubbleDensity: 2,
-    bubbleSize: [3, 15],
-    bubbleVelocityY: [.5, 2],
-    bubbleOpacity: [.1, .2]
-  });
-}
-
-sprite.onload = () => {
-  checkBubbles();
-};
-sprite.src = 'https://keho.nl/mb/codepenfiles/brewerydb/sprite.png';
-
-
-
+  sprite.src = 'https://keho.nl/mb/codepenfiles/brewerydb/sprite.png'
 </script>
 
  <!--- End of Menu --->
