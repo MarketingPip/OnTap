@@ -188,13 +188,13 @@ h1 {
 <script src="https://keho.nl/mb/codepenfiles/brewerydb/Bubbels.js"></script>
 <script src="./script.js"></script>
 <script>
-let sprite = new Image();
 
 // Check if Bubbles is already defined
 if (typeof Bubbles !== 'undefined') {
-  sprite.onload = () => {  
+ console.log("hello")
+  
   renderBubbles();
-};
+
 } else {
   // Set up a MutationObserver to observe changes in the DOM
   const observer = new MutationObserver(() => {
@@ -202,9 +202,9 @@ if (typeof Bubbles !== 'undefined') {
     if (typeof Bubbles !== 'undefined') {
       // Bubbles is defined, disconnect the observer and render
       console.log("wtf")
-      sprite.onload = () => {  
+     
         renderBubbles();
-       };
+
       
       observer.disconnect();
     
@@ -217,8 +217,10 @@ if (typeof Bubbles !== 'undefined') {
 }
 
 function renderBubbles() {
+let sprite = new Image();
 
-  const bubbles = new Bubbles({
+  sprite.onload = () => {   
+  bubbles = new Bubbles({
     canvasID: 'bubbles',
     sprite: sprite,
     spriteCount: 10,
@@ -227,10 +229,12 @@ function renderBubbles() {
     bubbleVelocityY: [.5, 2],
     bubbleOpacity: [.1, .2]
   });
+       };
+ sprite.src = 'https://keho.nl/mb/codepenfiles/brewerydb/sprite.png'; 
 }
 
 
-sprite.src = 'https://keho.nl/mb/codepenfiles/brewerydb/sprite.png';
+
 
 </script>
 
