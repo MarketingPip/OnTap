@@ -198,6 +198,7 @@ if (typeof Bubbles !== 'undefined') {
 } else {
   // Set up a MutationObserver to observe changes in the DOM
   const observer = new MutationObserver(() => {
+    console.log("hello")
     if (typeof Bubbles !== 'undefined') {
       // Bubbles is defined, disconnect the observer and render
       console.log("wtf")
