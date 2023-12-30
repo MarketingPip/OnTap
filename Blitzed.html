@@ -4,7 +4,7 @@
 
 
 
-  <div class="mx-auto mt-8 bg-green-100 p-8 h-screen">
+  <div class="mx-auto bg-green-100 p-8 h-screen">
     <!--- Marquee (DO NOT REMOVE) ---->
   <div class="marquee-wrapper">   
         <div class="marquee">
@@ -23,12 +23,13 @@
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
       <!-- Items will be added here dynamically -->
         
-     <!-- Cannabis Item -->
+     <!-- Cannabis Items -->
+   
+    {{#beers}}   
 <div class="bg-white p-6 rounded-lg shadow-md">
   <div class="flex items-center justify-between mb-4">
     <h2 class="text-xl font-semibold text-green-800">{{name}}</h2>
     
-    {{#beers}}
     
     {{#price}}<span class="text-lg text-gray-600">{{price}}</span> {{/price}}
   </div>
