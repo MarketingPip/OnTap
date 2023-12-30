@@ -947,10 +947,6 @@ function loadResourcesInParallel(resourceList, resourceType) {
         console.error('Invalid resource type');
       }
 
-      const timeoutId = setTimeout(() => {
-        cleanup();
-        console.error(`Timeout loading ${resourceType}: ${src}`);
-      }, timeout || 5000);
 
       newElement.onload = () => {
         cleanup();
@@ -963,6 +959,13 @@ function loadResourcesInParallel(resourceList, resourceType) {
         document.head.appendChild(newElement);
       
         if(src){
+
+      const timeoutId = setTimeout(() => {
+        cleanup();
+        console.error(`Timeout loading ${resourceType}: ${src}`);
+      }, timeout || 5000);
+
+		
 	    newElement.onerror = () => {
             cleanup();
             console.error(`Failed to load ${resourceType}: ${src}`);
