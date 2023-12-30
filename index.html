@@ -802,9 +802,7 @@ function importMenu() {
                 const TemplateLoaded = await loadTemplate(templateSelected);	   
 
 		
-                // Load stored scripts and stylesheets
-                await loadStoredResources()
-
+            
 		 await renderBeerMenu(TemplateLoaded); // renders the main menu	   
 
             } catch (error) {
@@ -1007,6 +1005,15 @@ function loadStoredResources() {
 	 displayMenu.innerHTML =  mustache.render( MenuTemplate, beers).trim();
 
 
+
+
+		    // Load stored scripts and stylesheets (needs to be wrapped or full screen trigger does not work in Chrome..)
+		const loadTemplateScripts = async () => {
+                         await loadStoredResources()
+		}
+
+		    loadTemplateScripts()
+		
 		
                         const removeHiddenClass = async () => {
 			const displayMenu = document.querySelector('.display-menu')	
