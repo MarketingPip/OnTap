@@ -801,7 +801,8 @@ function importMenu() {
 			
                 const TemplateLoaded = await loadTemplate(templateSelected);	   
 
-
+		
+            
 		 await renderBeerMenu(TemplateLoaded); // renders the main menu	   
 
             } catch (error) {
@@ -915,44 +916,70 @@ let MenuTemplate = null;
   }
 }
 
-function loadStoredScripts() {
-  storedScripts.forEach(scriptInfo => {
-    const { content, src, type, isModule } = scriptInfo;
 
-    // Create a new script element
-    const newScript = document.createElement('script');
 
-    // Set script content or src attribute
-    if (src) {
-      newScript.src = src;
-    } else {
-      newScript.text = content;
-    }
+function loadResourcesInParallel(resourceList, resourceType) {
+  return Promise.all(resourceList.map(resourceInfo => {
+    return new Promise((resolve, reject) => {
+      const { content, src, type, isModule, timeout } = resourceInfo;
 
-    // Set type if available
-    if (type) {
-      newScript.type = type;
-    }
+      let newElement;
 
-    // Set 'module' attribute for ECMAScript modules
-    if (isModule) {
-      newScript.type = 'module';
-    }
+      if (resourceType === 'script') {
+        newElement = document.createElement('script');
+        if (src) {
+          newElement.src = src;
+        } else {
+          newElement.text = content;
+        }
+        if (type) {
+          newElement.type = type;
+        }
+        if (isModule) {
+          newElement.type = 'module';
+        }
+      } else if (resourceType === 'stylesheet') {
+        newElement = document.createElement('link');
+        newElement.rel = 'stylesheet';
+        newElement.href = src;
+      } else {
+        console.error('Invalid resource type');
+      }
 
-    // Append the script to the head
-    document.head.appendChild(newScript);
-  });
+      const timeoutId = setTimeout(() => {
+        cleanup();
+        console.error(`Timeout loading ${resourceType}: ${src}`);
+      }, timeout || 5000);
+
+      newElement.onload = () => {
+        cleanup();
+        resolve();
+      };
+
+      newElement.onerror = () => {
+        cleanup();
+        console.error(`Failed to load ${resourceType}: ${src}`);
+      };
+
+      document.head.appendChild(newElement);
+
+      function cleanup() {
+        clearTimeout(timeoutId);
+        newElement.onload = null;
+        newElement.onerror = null;
+      }
+    });
+  }));
 }
 
-function loadStoredStylesheets() {
-  storedStylesheets.forEach(stylesheetHref => {
-    // Optionally, load each stylesheet
-    const newLink = document.createElement('link');
-    newLink.rel = 'stylesheet';
-    newLink.href = stylesheetHref;
-    document.head.appendChild(newLink);
-  });
+function loadStoredResources() {
+  const scriptPromises = loadResourcesInParallel(storedScripts, 'script');
+  const stylesheetPromises = loadResourcesInParallel(storedStylesheets, 'stylesheet');
+
+  return Promise.all([scriptPromises, stylesheetPromises]);
 }
+
+
 
 
 
@@ -973,17 +1000,20 @@ function loadStoredStylesheets() {
             const beers = beerMenu.kioskMenu
 
 
-		        // Load stored scripts and stylesheets
-                        
-                        loadStoredStylesheets();
 
 
 	 displayMenu.innerHTML =  mustache.render( MenuTemplate, beers).trim();
 
 
-                       // Load stored scripts and stylesheets
-                        loadStoredScripts();
-                        
+
+
+		    // Load stored scripts and stylesheets 
+
+                         await loadStoredResources()
+		
+
+	
+		
 		
                         const removeHiddenClass = async () => {
 			const displayMenu = document.querySelector('.display-menu')	
