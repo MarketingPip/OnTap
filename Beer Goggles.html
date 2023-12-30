@@ -209,7 +209,7 @@ if (typeof Bubbles !== 'undefined') {
   });
 
   // Configure the MutationObserver to watch for changes in the body element
-  observer.observe(document.body, { childList: true, subtree: true });
+  observer.observe(document.head, { childList: true, subtree: true });
 }
 
 function renderBubbles() {
