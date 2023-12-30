@@ -973,7 +973,9 @@ function loadResourcesInParallel(resourceList, resourceType) {
 	}
 
       function cleanup() {
+	if(src){      
         clearTimeout(timeoutId);
+	}	
         newElement.onload = null;
         newElement.onerror = null;
       }
