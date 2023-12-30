@@ -43,19 +43,41 @@ margin-left:0px;
 </div>
 <script src="./Beer Goggles/bubbles.js"></script>
 <script>
-  let sprite = new Image();
-  sprite.onload = () => {
-    bubbles = new Bubbles({
-      canvasID: 'bubbles',
-      sprite: sprite,
-      spriteCount: 10,
-      bubbleDensity: 2,
-      bubbleSize: [3, 15],
-      bubbleVelocityY: [.5, 2],
-      bubbleOpacity: [.1, .2]
-    });
+let sprite = new Image();
+// Function to asynchronously check if Bubbles is defined and of the correct type
+async function checkBubbles(attempt = 1) {
+  if (attempt <= 5 && typeof Bubbles !== 'undefined' && Bubbles instanceof YourBubblesType) {
+    // Bubbles is defined and of the correct type, render it
+    renderBubbles();
+  } else {
+    // Wait for 1 second before the next attempt
+    await delay(1000);
+    // Recursive call to continue checking
+    checkBubbles(attempt + 1);
   }
-  sprite.src = 'https://keho.nl/mb/codepenfiles/brewerydb/sprite.png'
+}
+
+async function renderBubbles() {
+  if (typeof Bubbles === 'undefined') {
+    console.error("Bubbles too long to load or was not found......");
+    return;
+  }
+
+  bubbles = new Bubbles({
+    canvasID: 'bubbles',
+    sprite: sprite,
+    spriteCount: 10,
+    bubbleDensity: 2,
+    bubbleSize: [3, 15],
+    bubbleVelocityY: [.5, 2],
+    bubbleOpacity: [.1, .2]
+  });
+}
+
+sprite.onload = () => {
+  checkBubbles();
+};
+sprite.src = 'https://keho.nl/mb/codepenfiles/brewerydb/sprite.png';
 </script>
 
  <!--- End of Menu --->
