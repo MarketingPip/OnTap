@@ -957,10 +957,12 @@ function loadResourcesInParallel(resourceList, resourceType) {
 
     
         document.head.appendChild(newElement);
-      
+
+let timeoutId = null;
+	
         if(src){
 
-      const timeoutId = setTimeout(() => {
+      timeoutId = setTimeout(() => {
         cleanup();
         console.error(`Timeout loading ${resourceType}: ${src}`);
       }, timeout || 5000);
