@@ -924,6 +924,7 @@ function loadResourcesInParallel(resourceList, resourceType) {
       const { content, src, type, isModule, timeout } = resourceInfo;
 
       let newElement;
+      let inLineScript = false;
 
       if (resourceType === 'script') {
         newElement = document.createElement('script');
@@ -931,6 +932,7 @@ function loadResourcesInParallel(resourceList, resourceType) {
           newElement.src = src;
         } else {
           newElement.text = content;
+	  inLineScript = true
         }
         if (type) {
           newElement.type = type;
@@ -961,7 +963,12 @@ function loadResourcesInParallel(resourceList, resourceType) {
         console.error(`Failed to load ${resourceType}: ${src}`);
       };
 
-      document.head.appendChild(newElement);
+    
+        document.head.appendChild(newElement);
+        // Resolve and append inline scripts immediately
+        if(inLineScript === true){
+	resolve();      
+	}
 
       function cleanup() {
         clearTimeout(timeoutId);
