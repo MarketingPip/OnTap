@@ -942,7 +942,7 @@ function loadResourcesInParallel(resourceList, resourceType) {
       } else if (resourceType === 'stylesheet') {
         newElement = document.createElement('link');
         newElement.rel = 'stylesheet';
-        newElement.href = src;
+        newElement.href = resourceInfo;
       } else {
         console.error('Invalid resource type');
       }
