@@ -46,7 +46,7 @@ margin-left:0px;
 let sprite = new Image();
 // Function to asynchronously check if Bubbles is defined and of the correct type
 async function checkBubbles(attempt = 1) {
-  if (attempt <= 5 && typeof Bubbles !== 'undefined' && Bubbles instanceof YourBubblesType) {
+  if (attempt <= 5 && typeof Bubbles !== 'undefined') {
     // Bubbles is defined and of the correct type, render it
     renderBubbles();
   } else {
