@@ -498,7 +498,6 @@
   
 </body>
 <script type="module">
-(async function() {	
 
 import * as utils from './assets/js/utils/index.js';
 
@@ -520,7 +519,10 @@ window.showOverlay = utils.showOverlay
 
 window.hideOverlay = utils.hideOverlay	
 
-window.fetchTemplates = main_screen.fetchTemplates	   
+window.fetchTemplates = main_screen.fetchTemplates	   	
+(async function() {	
+
+
 	
 const App_Settings = {
 	templateOptions:[]
