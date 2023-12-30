@@ -190,32 +190,44 @@ h1 {
 <script>
 let sprite = new Image();
 
-//const delay = ms => new Promise(res => setTimeout(res, ms))
-
-async function renderBubbles(){
-  if (typeof Bubbles === 'undefined') {
-    await delay(5000);
-    if (typeof Bubbles !== 'undefined') {
-      bubbles = new Bubbles({
-        canvasID: 'bubbles',
-        sprite: sprite,
-        spriteCount: 10,
-        bubbleDensity: 2,
-        bubbleSize: [3, 15],
-        bubbleVelocityY: [.5, 2],
-        bubbleOpacity: [.1, .2]
-      });
-    }else{
-    console.error("Bubbles too long to load...")
-    }
-  }
-} 
-  
-  
+// Check if Bubbles is already defined
+if (typeof Bubbles !== 'undefined') {
   sprite.onload = () => {  
-    renderBubbles()
-  }
-  sprite.src = 'https://keho.nl/mb/codepenfiles/brewerydb/sprite.png'
+  renderBubbles();
+};
+} else {
+  // Set up a MutationObserver to observe changes in the DOM
+  const observer = new MutationObserver(() => {
+    if (typeof Bubbles !== 'undefined') {
+      // Bubbles is defined, disconnect the observer and render
+      observer.disconnect();
+      sprite.onload = () => {  
+      renderBubbles();
+    };
+      
+    }
+  });
+
+  // Configure the MutationObserver to watch for changes in the body element
+  observer.observe(document.body, { childList: true, subtree: true });
+}
+
+function renderBubbles() {
+
+  bubbles = new Bubbles({
+    canvasID: 'bubbles',
+    sprite: sprite,
+    spriteCount: 10,
+    bubbleDensity: 2,
+    bubbleSize: [3, 15],
+    bubbleVelocityY: [.5, 2],
+    bubbleOpacity: [.1, .2]
+  });
+}
+
+
+sprite.src = 'https://keho.nl/mb/codepenfiles/brewerydb/sprite.png';
+
 </script>
 
  <!--- End of Menu --->
