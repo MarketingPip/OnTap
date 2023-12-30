@@ -189,16 +189,34 @@ h1 {
 <script src="./script.js"></script>
 <script>
   let sprite = new Image();
-  sprite.onload = () => {
-    bubbles = new Bubbles({
-      canvasID: 'bubbles',
-      sprite: sprite,
-      spriteCount: 10,
-      bubbleDensity: 2,
-      bubbleSize: [3, 15],
-      bubbleVelocityY: [.5, 2],
-      bubbleOpacity: [.1, .2]
-    });
+
+  const delay = ms => new Promise(res => setTimeout(res, ms))
+
+
+const delay = ms => new Promise(res => setTimeout(res, ms));
+
+async function renderBubbles(){
+  if (typeof Bubbles === 'undefined') {
+    await delay(5000);
+    if (typeof Bubbles !== 'undefined') {
+      bubbles = new Bubbles({
+        canvasID: 'bubbles',
+        sprite: sprite,
+        spriteCount: 10,
+        bubbleDensity: 2,
+        bubbleSize: [3, 15],
+        bubbleVelocityY: [.5, 2],
+        bubbleOpacity: [.1, .2]
+      });
+    }else{
+    console.error("Bubbles too long to load...")
+    }
+  }
+} 
+  
+  
+  sprite.onload = () => {  
+    renderBubbles()
   }
   sprite.src = 'https://keho.nl/mb/codepenfiles/brewerydb/sprite.png'
 </script>
