@@ -6,7 +6,15 @@
     <link rel="stylesheet" href="./assets/tailwind.css">
     <script type="module">
 import * as utils from './assets/js/utils/index.js';
+const version = "1.0.0"
 
+const versionElements = document.querySelectorAll(".version-num");
+
+versionElements.forEach((element) => {
+    element.innerHTML = version;
+});	
+
+window.version = version;		
 window.mustache = mustache	    
 
 window.showNotification = utils.showNotification
