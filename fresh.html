@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
+    <title>Premium Taproom Menu</title>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #0a0a0a; /* Deep matte black */
+            overflow: hidden; /* Prevents scrollbars on TV */
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+        }
+        .accent-amber { color: #fbbf24; }
+        .bg-accent-amber { background-color: #fbbf24; }
+    </style>
+</head>
+<body class="text-gray-100 p-12">
+
+    <header class="flex justify-between items-end mb-12 border-b border-gray-800 pb-6">
+        <div>
+            <h1 class="text-6xl font-900 tracking-tighter uppercase italic">Fresh <span class="accent-amber">On Tap</span></h1>
+            <p class="text-gray-500 text-xl mt-2 tracking-widest uppercase">Local Brewery & Kitchen • January 2026</p>
+        </div>
+        <div class="text-right">
+            <span class="text-gray-500 block text-sm uppercase tracking-widest">Wifi: Brewery_Guest</span>
+            <span class="text-2xl font-bold tracking-tight">Pass: DrinkLocal2026</span>
+        </div>
+    </header>
+
+    <div class="grid grid-cols-2 gap-8">
+        
+        <div class="glass-card p-8 rounded-2xl flex justify-between items-start">
+            <div class="flex-1">
+                <div class="flex items-center gap-4 mb-2">
+                    <span class="bg-accent-amber text-black font-black px-3 py-1 rounded-md text-xl">01</span>
+                    <h2 class="text-3xl font-bold tracking-tight">Midnight Porter</h2>
+                </div>
+                <p class="text-gray-400 text-lg leading-relaxed line-clamp-2">Rich notes of dark chocolate and roasted coffee beans with a smooth, velvety finish.</p>
+            </div>
+            <div class="ml-8 text-right">
+                <p class="text-3xl font-black accent-amber">$8</p>
+                <div class="flex gap-3 mt-2 text-sm font-bold text-gray-500 uppercase tracking-tighter">
+                    <span>6.5% <small class="font-normal text-xs">ABV</small></span>
+                    <span>35 <small class="font-normal text-xs">IBU</small></span>
+                </div>
+            </div>
+        </div>
+
+        <div class="glass-card p-8 rounded-2xl flex justify-between items-start">
+            <div class="flex-1">
+                <div class="flex items-center gap-4 mb-2">
+                    <span class="bg-accent-amber text-black font-black px-3 py-1 rounded-md text-xl">02</span>
+                    <h2 class="text-3xl font-bold tracking-tight">Neon Haze IPA</h2>
+                </div>
+                <p class="text-gray-400 text-lg leading-relaxed line-clamp-2">A citrus explosion featuring Citra and Mosaic hops. Cloudy, juicy, and refreshing.</p>
+            </div>
+            <div class="ml-8 text-right">
+                <p class="text-3xl font-black accent-amber">$9</p>
+                <div class="flex gap-3 mt-2 text-sm font-bold text-gray-500 uppercase tracking-tighter">
+                    <span>7.2% <small class="font-normal text-xs">ABV</small></span>
+                    <span>55 <small class="font-normal text-xs">IBU</small></span>
+                </div>
+            </div>
+        </div>
+
+        <div class="glass-card p-8 rounded-2xl flex justify-between items-start">
+            <div class="flex-1">
+                <div class="flex items-center gap-4 mb-2">
+                    <span class="bg-accent-amber text-black font-black px-3 py-1 rounded-md text-xl">03</span>
+                    <h2 class="text-3xl font-bold tracking-tight">Golden Hour Lager</h2>
+                </div>
+                <p class="text-gray-400 text-lg leading-relaxed line-clamp-2">Classic, crisp, and clean. The perfect everyday drinker for any palate.</p>
+            </div>
+            <div class="ml-8 text-right">
+                <p class="text-3xl font-black accent-amber">$7</p>
+                <div class="flex gap-3 mt-2 text-sm font-bold text-gray-500 uppercase tracking-tighter">
+                    <span>4.8% <small class="font-normal text-xs">ABV</small></span>
+                    <span>18 <small class="font-normal text-xs">IBU</small></span>
+                </div>
+            </div>
+        </div>
+
+        <div class="glass-card p-8 rounded-2xl flex justify-between items-start border-l-4 border-l-amber-500">
+            <div class="flex-1">
+                <div class="flex items-center gap-4 mb-2">
+                    <span class="bg-accent-amber text-black font-black px-3 py-1 rounded-md text-xl">04</span>
+                    <h2 class="text-3xl font-bold tracking-tight">Wild Berry Sour</h2>
+                </div>
+                <p class="text-gray-400 text-lg leading-relaxed line-clamp-2">Kettle-soured with fresh raspberries and blackberries. Tart and vibrant.</p>
+            </div>
+            <div class="ml-8 text-right">
+                <p class="text-3xl font-black accent-amber">$9</p>
+                <div class="flex gap-3 mt-2 text-sm font-bold text-gray-500 uppercase tracking-tighter">
+                    <span>5.5% <small class="font-normal text-xs">ABV</small></span>
+                    <span>10 <small class="font-normal text-xs">IBU</small></span>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <footer class="fixed bottom-0 left-0 w-full p-12 flex justify-between items-center bg-gradient-to-t from-black to-transparent">
+        <div class="flex gap-8">
+            <div class="text-sm">
+                <span class="text-gray-500 uppercase block">Total Taps</span>
+                <span class="text-xl font-bold">24 active</span>
+            </div>
+            <div class="text-sm border-l border-gray-800 pl-8">
+                <span class="text-gray-500 uppercase block">Happy Hour</span>
+                <span class="text-xl font-bold">4PM - 6PM Daily</span>
+            </div>
+        </div>
+        <div class="bg-white/5 px-6 py-3 rounded-full border border-white/10">
+            <p class="text-sm text-gray-400 italic">Please drink responsibly.</p>
+        </div>
+    </footer>
+
+</body>
+</html>
