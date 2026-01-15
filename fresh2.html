@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&family=Oswald:wght@500;700&display=swap" rel="stylesheet">
+    <title>Vertical Tap Menu</title>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #0f1115;
+            color: #e5e7eb;
+        }
+        .heading-font { font-family: 'Oswald', sans-serif; }
+        .tap-row {
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            transition: background 0.2s;
+        }
+        .tap-row:nth-child(even) { background: rgba(255, 255, 255, 0.02); }
+        .amber-glow { color: #fbbf24; text-shadow: 0 0 15px rgba(251, 191, 36, 0.3); }
+    </style>
+</head>
+<body class="p-0 m-0">
+
+    <header class="bg-black p-10 border-b-4 border-amber-500 text-center">
+        <h1 class="heading-font text-7xl font-bold uppercase tracking-tighter italic">The <span class="text-amber-500">Draught</span> List</h1>
+        <p class="text-gray-400 text-xl tracking-[0.3em] uppercase mt-2">Brewed Local • Served Cold</p>
+    </header>
+
+    <div class="flex flex-col">
+        
+        <div class="tap-row p-8 flex items-center justify-between">
+            <div class="flex items-center gap-8">
+                <span class="heading-font text-6xl font-bold text-gray-700">01</span>
+                <div>
+                    <h2 class="text-4xl font-extrabold tracking-tight mb-1 uppercase heading-font">Obsidian Stout</h2>
+                    <p class="text-gray-500 text-xl italic font-medium">Nitro • Notes of Cocoa & Molasses</p>
+                </div>
+            </div>
+            <div class="flex items-center gap-12">
+                <div class="text-right">
+                    <span class="block text-amber-500 font-bold text-2xl uppercase tracking-widest">6.8%</span>
+                    <span class="block text-gray-600 text-sm font-bold uppercase">ABV</span>
+                </div>
+                <div class="text-right border-l border-gray-800 pl-12">
+                    <span class="block text-white font-black text-4xl leading-none heading-font">$8</span>
+                    <span class="block text-gray-600 text-sm font-bold uppercase mt-1">16oz</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="tap-row p-8 flex items-center justify-between">
+            <div class="flex items-center gap-8">
+                <span class="heading-font text-6xl font-bold text-gray-700">02</span>
+                <div>
+                    <h2 class="text-4xl font-extrabold tracking-tight mb-1 uppercase heading-font">Summer Salt Gose</h2>
+                    <p class="text-gray-500 text-xl italic font-medium">Hibiscus & Sea Salt Refreshment</p>
+                </div>
+            </div>
+            <div class="flex items-center gap-12">
+                <div class="text-right">
+                    <span class="block text-amber-500 font-bold text-2xl uppercase tracking-widest">4.2%</span>
+                    <span class="block text-gray-600 text-sm font-bold uppercase">ABV</span>
+                </div>
+                <div class="text-right border-l border-gray-800 pl-12">
+                    <span class="block text-white font-black text-4xl leading-none heading-font">$7</span>
+                    <span class="block text-gray-600 text-sm font-bold uppercase mt-1">16oz</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="tap-row p-8 flex items-center justify-between bg-amber-500/10 border-l-8 border-amber-500">
+            <div class="flex items-center gap-8">
+                <span class="heading-font text-6xl font-bold text-amber-500/40">03</span>
+                <div>
+                    <div class="flex items-center gap-3">
+                        <h2 class="text-4xl font-extrabold tracking-tight mb-1 uppercase heading-font amber-glow">Cloud Cutter IPA</h2>
+                        <span class="bg-amber-500 text-black text-xs font-black px-2 py-0.5 rounded">NEW</span>
+                    </div>
+                    <p class="text-gray-400 text-xl italic font-medium">Double Dry Hopped Juicy IPA</p>
+                </div>
+            </div>
+            <div class="flex items-center gap-12">
+                <div class="text-right">
+                    <span class="block text-amber-500 font-bold text-2xl uppercase tracking-widest">7.5%</span>
+                    <span class="block text-gray-600 text-sm font-bold uppercase">ABV</span>
+                </div>
+                <div class="text-right border-l border-gray-800 pl-12">
+                    <span class="block text-white font-black text-4xl leading-none heading-font">$9</span>
+                    <span class="block text-gray-600 text-sm font-bold uppercase mt-1">12oz</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="tap-row p-8 flex items-center justify-between">
+            <div class="flex items-center gap-8">
+                <span class="heading-font text-6xl font-bold text-gray-700">04</span>
+                <div>
+                    <h2 class="text-4xl font-extrabold tracking-tight mb-1 uppercase heading-font">Riverside Lager</h2>
+                    <p class="text-gray-500 text-xl italic font-medium">Crisp, Malt-Forward Classic</p>
+                </div>
+            </div>
+            <div class="flex items-center gap-12">
+                <div class="text-right">
+                    <span class="block text-amber-500 font-bold text-2xl uppercase tracking-widest">5.0%</span>
+                    <span class="block text-gray-600 text-sm font-bold uppercase">ABV</span>
+                </div>
+                <div class="text-right border-l border-gray-800 pl-12">
+                    <span class="block text-white font-black text-4xl leading-none heading-font">$6</span>
+                    <span class="block text-gray-600 text-sm font-bold uppercase mt-1">16oz</span>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <footer class="fixed bottom-0 w-full bg-black/80 backdrop-blur-md p-8 border-t border-gray-800 flex justify-between items-center">
+        <div class="flex gap-10">
+            <div>
+                <span class="block text-gray-500 uppercase text-xs font-bold tracking-widest">Social</span>
+                <span class="text-xl font-bold">@OurBrewery</span>
+            </div>
+            <div>
+                <span class="block text-gray-500 uppercase text-xs font-bold tracking-widest">Flight Deal</span>
+                <span class="text-xl font-bold italic text-amber-500 underline underline-offset-4">4 Taps for $12</span>
+            </div>
+        </div>
+        <div class="text-right">
+            <div class="text-3xl font-black heading-font tracking-tighter">15:42 PM</div>
+        </div>
+    </footer>
+
+</body>
+</html>
