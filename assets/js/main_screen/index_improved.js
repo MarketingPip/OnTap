@@ -617,7 +617,7 @@ class KeyboardHandler {
 // Event Handlers
 // ============================================================================
 
-class EventHandlers {
+export class EventHandlers {
   static async handleLoadMenu() {
     const fileInput = DOM.getElement('#fileInput');
     const templateSelect = DOM.getElement('#templateSelect');
@@ -869,7 +869,7 @@ window.addEventListener('pageshow', (event) => {
 
 window.addEventListener('load', initializeApp);
 
-window.EventHandlers = EventHandlers
+
 
 // Export for testing (if needed)
 if (typeof module !== 'undefined' && module.exports) {
