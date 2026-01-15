@@ -679,6 +679,7 @@ class EventHandlers {
   }
 
   static showLoadMenuModal() {
+     window.handleLoadMenu = this.handleLoadMenu
     const modalContent = `
       <label for="fileInput" class="text-lg font-medium mb-2">Choose a File:</label>
       <input type="file" id="fileInput" class="w-full border border-gray-300 p-2 rounded-md mb-4" accept=".json" />
@@ -701,7 +702,7 @@ class EventHandlers {
 
     modalManager.open('Load Menu', modalContent);
 
-    window.handleLoadMenu = this.handleLoadMenu
+   
   }
 
   static showIssueModal() {
