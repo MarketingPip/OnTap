@@ -869,6 +869,8 @@ window.addEventListener('pageshow', (event) => {
 
 window.addEventListener('load', initializeApp);
 
+window.EventHandlers = EventHandlers
+
 // Export for testing (if needed)
 if (typeof module !== 'undefined' && module.exports) {
   module.exports = {
