@@ -6,7 +6,7 @@
               document.body.classList.remove("page-loader-active")
               
           
-             hidePageLoader()
+             removeLoader()
 
              if(isHomePage){
                updateCheck()
