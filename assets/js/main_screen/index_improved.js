@@ -770,6 +770,7 @@ class TutorialManager {
     if (!wrapper) return;
 
     wrapper.classList.remove('hide-display');
+    wrapper.classList.remove('hidden');
     wrapper.style.visibility = 'visible';
     wrapper.classList.toggle('translate-y-full');
     wrapper.focus();
