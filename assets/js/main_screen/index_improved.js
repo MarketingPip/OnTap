@@ -207,7 +207,7 @@ class ModalManager {
 
 const modalManager = new ModalManager();
 window.hideModal = () => modalManager.close();
-
+window.openModal = (...args) => modalManager.open(args);
 // ============================================================================
 // Template Management
 // ============================================================================
