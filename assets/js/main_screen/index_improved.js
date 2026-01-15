@@ -690,7 +690,7 @@ class EventHandlers {
       <p id="templateError" class="text-red-500 text-sm mb-4 hidden"></p>
 
       <div class="flex flex-col md:flex-row justify-end space-y-4 md:space-y-0 md:space-x-4">
-        <button class="import-menu w-full md:w-auto inline-flex items-center justify-center font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 hover:bg-primary/90 h-10 text-white text-lg md:text-xl p-2 md:p-4 rounded-lg bg-green-500">
+        <button  onclick="handleLoadMenu()"  class="import-menu w-full md:w-auto inline-flex items-center justify-center font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 hover:bg-primary/90 h-10 text-white text-lg md:text-xl p-2 md:p-4 rounded-lg bg-green-500">
           Load
         </button>
         <button onclick="hideModal()" class="w-full md:w-auto inline-flex items-center justify-center font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 hover:bg-gray-300 h-10 text-white text-lg md:text-xl p-2 md:p-4 rounded-lg bg-gray-500">
@@ -701,10 +701,7 @@ class EventHandlers {
 
     modalManager.open('Load Menu', modalContent);
 
-    // Attach import handler
-    setTimeout(() => {
-      DOM.getElement('.import-menu')?.addEventListener('click', this.handleLoadMenu);
-    }, 100);
+    window.handleLoadMenu = this.handleLoadMenu
   }
 
   static showIssueModal() {
