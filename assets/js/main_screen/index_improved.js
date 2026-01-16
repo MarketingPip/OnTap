@@ -721,6 +721,57 @@ export class EventHandlers {
     }, 1000);
   }
 
+static showFrontMatterModal(currentAttributes = {}) {
+  // Generate inputs dynamically based on the current front matter keys
+  const fieldsHTML = Object.entries(currentAttributes).map(([key, value]) => `
+    <div class="mb-4">
+      <label for="fm-${key}" class="text-sm font-bold text-gray-700 block mb-1 capitalize">
+        ${key.replace('_', ' ')}:
+      </label>
+      <input 
+        type="text" 
+        id="fm-${key}" 
+        data-key="${key}"
+        value="${value}" 
+        class="fm-input w-full border border-gray-300 p-2 rounded-md focus:ring-2 focus:ring-blue-500 outline-none"
+      />
+    </div>
+  `).join('');
+
+  const modalContent = `
+    <div class="space-y-4">
+      <p class="text-gray-600 mb-4">Adjust the template settings below:</p>
+      
+      <div id="fm-fields-container" class="max-h-60 overflow-y-auto px-1">
+        ${fieldsHTML || '<p class="text-italic text-gray-500">No variables found in this template.</p>'}
+      </div>
+
+      <div class="flex flex-col md:flex-row justify-end space-y-4 md:space-y-0 md:space-x-4 pt-4 border-t">
+        <button id="saveFrontMatter" class="w-full md:w-auto inline-flex items-center justify-center font-medium h-10 text-white px-6 rounded-lg bg-blue-600 hover:bg-blue-700 transition-colors">
+          Update Settings
+        </button>
+        <button onclick="modalManager.close()" class="w-full md:w-auto inline-flex items-center justify-center font-medium h-10 text-white px-6 rounded-lg bg-gray-500 hover:bg-gray-600 transition-colors">
+          Cancel
+        </button>
+      </div>
+    </div>
+  `;
+
+  modalManager.open('Template Settings', modalContent);
+
+  // Handle saving the new values
+  document.getElementById('saveFrontMatter')?.addEventListener('click', () => {
+    const updatedData = {};
+    document.querySelectorAll('.fm-input').forEach(input => {
+      updatedData[input.dataset.key] = input.value;
+    });
+
+    // Custom event or callback to update your preview
+    console.log('New Front Matter Data:', updatedData);
+    this.handleUpdateTemplateSettings(updatedData);
+  });
+}
+  
   static showLoadMenuModal() {
    
     const modalContent = `
