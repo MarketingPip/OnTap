@@ -3,8 +3,7 @@ layout: simple
 title: Today's Drafts
 version: 1.0.0
 ---
-<!--- Default Menu Template (it is advised you DO NOT remove / or edit this, if you do - keep a safe duplicate of it!)  ----> 
-<h1>{{ page.title }}</h1>
+
  <!--- Start Of Menu --->
 	      <div class="bg-gray-100 p-8 h-screen">
 
@@ -17,9 +16,8 @@ version: 1.0.0
     </div>
 <!--- END OF MARQUE -->
 
-    <!-- Menu Title (you must have a id set for 'MenuTitle' - REQUIRED --->
-    <h1 class="text-4xl font-bold mb-8" id="MenuTitle"></h1>
-    <!-- End of Marque Title --->
+    <h1 class="text-4xl font-bold mb-8" id="MenuTitle">{{ kioskMenu.title }}</h1>
+
    
     <!---  Menu Items  --->
     <div class="flex flex-wrap -mx-4 mb-4">
