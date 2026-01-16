@@ -255,6 +255,7 @@ class TemplateManager {
   }
 
   static async loadTemplate(templateName) {
+    console.log("trying");
     const errorElement = DOM.getElement('#templateError');
     errorElement?.classList.add('hidden');
 
@@ -639,6 +640,7 @@ export class EventHandlers {
     const templateName = templateSelect?.value || 'default';
 
     try {
+      console.log("trying");
       await MenuManager.importMenu(file, templateName);
       modalManager.close();
     } catch (error) {
