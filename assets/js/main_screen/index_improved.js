@@ -1,3 +1,7 @@
+import { Liquid } from "https://esm.sh/liquidjs?target=es2016";
+import fm from "https://esm.sh/front-matter?target=es2016";
+
+
 /**
  * WhatsOnTap Application
  * Improved version with better architecture and error handling
@@ -71,6 +75,39 @@ const appState = new AppState();
 // ============================================================================
 // Utility Functions
 // ============================================================================
+
+
+export const JekyllRenderer = {
+  engine: new Liquid(),
+
+  async render(templateRaw, data) {
+    try {
+      // 1. Ensure templateRaw is a string and trim whitespace
+      const rawString = templateRaw.trim();
+
+      // 2. Parse Front Matter 
+      // Some ESM builds require fm.default(rawString), others fm(rawString)
+      const parse = typeof fm === 'function' ? fm : fm.default;
+      const content = parse(rawString);
+      
+      // 3. Prepare the context
+      // We explicitly map content.attributes to 'page' to match Jekyll behavior
+      const context = {
+        ...data,
+        page: content.attributes || {} 
+      };
+
+      // 4. Render the body
+      // content.body contains everything AFTER the second ---
+      return await this.engine.parseAndRender(content.body, context);
+
+    } catch (error) {
+      console.error("Jekyll Render Error:", error);
+      // Fallback: if parsing fails, try rendering the whole string as Liquid
+      return await this.engine.parseAndRender(templateRaw, data);
+    }
+  }
+};
 
 const Utils = {
   delay: (ms) => new Promise(resolve => setTimeout(resolve, ms)),
@@ -466,8 +503,9 @@ class MenuManager {
         throw new Error('Missing required elements');
       }
 
-      // Render template with mustache
-      displayMenu.innerHTML = window.mustache.render(menuTemplate, beerMenu.kioskMenu).trim();
+      // Render template with LiquidJS
+      const finalHTML = await JekyllRenderer.render(menuTemplate, beerMenu);
+      displayMenu.innerHTML = finalHTML;
 
       // Load resources
       await ResourceLoader.loadAllResources();
