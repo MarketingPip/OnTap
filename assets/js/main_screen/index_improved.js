@@ -545,89 +545,10 @@ class MenuManager {
 
   static setupMenuFeatures() {
     KeyboardHandler.registerEscapeHandler();
-    MenuOptionsRenderer.render();
   }
 }
 
-// ============================================================================
-// Menu Options Renderer
-// ============================================================================
 
-class MenuOptionsRenderer {
-  static render() {
-    const beerMenu = appState.getBeerMenu();
-    if (!beerMenu) return;
-
-    this.renderTitle(beerMenu);
-    this.renderMarquee(beerMenu);
-  }
-
-  static renderTitle(beerMenu) {
-    const titleElement = DOM.getElement('#MenuTitle');
-    if (!titleElement) return;
-
-    const { titleEnabled } = beerMenu.options;
-    const { title } = beerMenu.kioskMenu;
-
-    if (!titleEnabled || !title) {
-      titleElement.style.display = 'none';
-    } else {
-      titleElement.textContent = title;
-    }
-  }
-
-  static renderMarquee(beerMenu) {
-    const { marqueeEnabled, marqueeSettings } = beerMenu.options;
-    
-    if (!marqueeEnabled) {
-      this.hideMarquee();
-      return;
-    }
-
-    const { strings = [], clock } = marqueeSettings;
-
-    if (strings.length === 0 && !clock) {
-      this.hideMarquee();
-      return;
-    }
-
-    // Add strings to marquee
-    strings.forEach(str => this.addMarqueeItem(str));
-
-    // Add clock if enabled
-    if (clock) {
-      this.addMarqueeItem('', 'clockMarquee');
-      this.startClock();
-    }
-  }
-
-  static addMarqueeItem(text, id = null) {
-    const marquee = DOM.getElement('.marquee');
-    if (!marquee) return;
-
-    const span = DOM.createElement('span', { innerHTML: text });
-    if (id) span.id = id;
-    marquee.appendChild(span);
-  }
-
-  static startClock() {
-    const updateClock = () => {
-      const clockElement = DOM.getElement('#clockMarquee');
-      if (clockElement) {
-        clockElement.textContent = Utils.getLocalizedTime();
-      }
-      requestAnimationFrame(updateClock);
-    };
-    updateClock();
-  }
-
-  static hideMarquee() {
-    const marqueeWrapper = DOM.getElement('.marquee-wrapper');
-    if (marqueeWrapper) {
-      marqueeWrapper.style.display = 'none';
-    }
-  }
-}
 
 // ============================================================================
 // Keyboard Event Handlers
