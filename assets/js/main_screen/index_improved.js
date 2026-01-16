@@ -305,7 +305,7 @@ class TemplateManager {
       tempDiv.innerHTML = htmlContent;
 
       let templateData = parseFrontMatter(htmlContent.trim()); // must be trimmed.
-      console.log(templateData);
+      console.log(htmlContent);
       templateData = templateData.attributes || {};
       // Validate version
       const templateVersion = templateData?.version
@@ -463,7 +463,7 @@ class MenuValidator {
 // ============================================================================
 
 function parseFrontMatter(rawString){
-   const parse = typeof fm === 'function' ? fm : fm.default;
+   const parse = fm;
    const content = parse(rawString);
    return content
 }
