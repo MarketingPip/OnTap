@@ -87,7 +87,7 @@ export const JekyllRenderer = {
 
       // 2. Parse Front Matter 
       const content = parseFrontMatter(rawString);
-      
+      console.log(content);
       // 3. Prepare the context
       // We explicitly map content.attributes to 'page' to match Jekyll behavior
       const context = {
@@ -501,7 +501,7 @@ class MenuManager {
     try {
       const displayMenu = DOM.getElement('.display-menu');
       const beerMenu = appState.getBeerMenu();
-
+      console.log(beerMenu);
       if (!displayMenu || !beerMenu) {
         throw new Error('Missing required elements');
       }
