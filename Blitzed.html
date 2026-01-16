@@ -36,24 +36,31 @@
         
      <!-- Cannabis Items -->
    
-    {{#beers}}   
-<div class="bg-white p-6 rounded-lg shadow-md">
-  <div class="flex items-center justify-between mb-4">
-    <h2 class="text-xl font-semibold text-green-800">{{name}}</h2>
-    
-    
-    {{#price}}<span class="text-lg text-gray-600">{{price}}</span> {{/price}}
-  </div>
-  <div class="flex items-center">
-    {{#abv}} 
-    <span class="text-sm text-gray-500">THC: {{abv}}</span>
-    <i class="fas fa-cannabis text-green-600 ml-2"></i>
-     {{/abv}}
-  </div>
-</div>
+{% for beer in kioskMenu.beers %}
+  <div class="bg-white p-6 rounded-lg shadow-md">
+    <div class="flex items-center justify-between mb-4">
+      <h2 class="text-xl font-semibold text-green-800">
+        {{ beer.name }}
+      </h2>
 
-  {{/beers}}  
-      
+      {% if beer.price %}
+        <span class="text-lg text-gray-600">
+          {{ beer.price }}
+        </span>
+      {% endif %}
+    </div>
+
+    {% if beer.abv %}
+      <div class="flex items-center">
+        <span class="text-sm text-gray-500">
+          THC: {{ beer.abv }}
+        </span>
+        <i class="fas fa-cannabis text-green-600 ml-2"></i>
+      </div>
+    {% endif %}
+  </div>
+{% endfor %}
+
       
       
       
