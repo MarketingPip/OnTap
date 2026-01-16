@@ -36,73 +36,59 @@
 
     <div class="grid grid-cols-2 gap-8">
         
-        <div class="glass-card p-8 rounded-2xl flex justify-between items-start">
-            <div class="flex-1">
-                <div class="flex items-center gap-4 mb-2">
-                    <span class="bg-accent-amber text-black font-black px-3 py-1 rounded-md text-xl">01</span>
-                    <h2 class="text-3xl font-bold tracking-tight">Midnight Porter</h2>
-                </div>
-                <p class="text-gray-400 text-lg leading-relaxed line-clamp-2">Rich notes of dark chocolate and roasted coffee beans with a smooth, velvety finish.</p>
-            </div>
-            <div class="ml-8 text-right">
-                <p class="text-3xl font-black accent-amber">$8</p>
-                <div class="flex gap-3 mt-2 text-sm font-bold text-gray-500 uppercase tracking-tighter">
-                    <span>6.5% <small class="font-normal text-xs">ABV</small></span>
-                    <span>35 <small class="font-normal text-xs">IBU</small></span>
-                </div>
-            </div>
+    <div class="grid grid-cols-2 gap-8">
+  {% for beer in kioskMenu.beers %}
+    <div class="glass-card p-8 rounded-2xl flex justify-between items-start
+                {% if beer.featured %}border-l-4 border-l-amber-500{% endif %}">
+      
+      <div class="flex-1">
+        <div class="flex items-center gap-4 mb-2">
+          <span class="bg-accent-amber text-black font-black px-3 py-1 rounded-md text-xl">
+            {{ forloop.index | prepend: '0' | slice: -2, 2 }}
+          </span>
+
+          <h2 class="text-3xl font-bold tracking-tight">
+            {{ beer.name }}
+          </h2>
         </div>
 
-        <div class="glass-card p-8 rounded-2xl flex justify-between items-start">
-            <div class="flex-1">
-                <div class="flex items-center gap-4 mb-2">
-                    <span class="bg-accent-amber text-black font-black px-3 py-1 rounded-md text-xl">02</span>
-                    <h2 class="text-3xl font-bold tracking-tight">Neon Haze IPA</h2>
-                </div>
-                <p class="text-gray-400 text-lg leading-relaxed line-clamp-2">A citrus explosion featuring Citra and Mosaic hops. Cloudy, juicy, and refreshing.</p>
-            </div>
-            <div class="ml-8 text-right">
-                <p class="text-3xl font-black accent-amber">$9</p>
-                <div class="flex gap-3 mt-2 text-sm font-bold text-gray-500 uppercase tracking-tighter">
-                    <span>7.2% <small class="font-normal text-xs">ABV</small></span>
-                    <span>55 <small class="font-normal text-xs">IBU</small></span>
-                </div>
-            </div>
-        </div>
+        {% if beer.description %}
+          <p class="text-gray-400 text-lg leading-relaxed line-clamp-2">
+            {{ beer.description }}
+          </p>
+        {% endif %}
+      </div>
 
-        <div class="glass-card p-8 rounded-2xl flex justify-between items-start">
-            <div class="flex-1">
-                <div class="flex items-center gap-4 mb-2">
-                    <span class="bg-accent-amber text-black font-black px-3 py-1 rounded-md text-xl">03</span>
-                    <h2 class="text-3xl font-bold tracking-tight">Golden Hour Lager</h2>
-                </div>
-                <p class="text-gray-400 text-lg leading-relaxed line-clamp-2">Classic, crisp, and clean. The perfect everyday drinker for any palate.</p>
-            </div>
-            <div class="ml-8 text-right">
-                <p class="text-3xl font-black accent-amber">$7</p>
-                <div class="flex gap-3 mt-2 text-sm font-bold text-gray-500 uppercase tracking-tighter">
-                    <span>4.8% <small class="font-normal text-xs">ABV</small></span>
-                    <span>18 <small class="font-normal text-xs">IBU</small></span>
-                </div>
-            </div>
-        </div>
+      <div class="ml-8 text-right">
+        {% if beer.price %}
+          <p class="text-3xl font-black accent-amber">
+            {{ beer.price }}
+          </p>
+        {% endif %}
 
-        <div class="glass-card p-8 rounded-2xl flex justify-between items-start border-l-4 border-l-amber-500">
-            <div class="flex-1">
-                <div class="flex items-center gap-4 mb-2">
-                    <span class="bg-accent-amber text-black font-black px-3 py-1 rounded-md text-xl">04</span>
-                    <h2 class="text-3xl font-bold tracking-tight">Wild Berry Sour</h2>
-                </div>
-                <p class="text-gray-400 text-lg leading-relaxed line-clamp-2">Kettle-soured with fresh raspberries and blackberries. Tart and vibrant.</p>
-            </div>
-            <div class="ml-8 text-right">
-                <p class="text-3xl font-black accent-amber">$9</p>
-                <div class="flex gap-3 mt-2 text-sm font-bold text-gray-500 uppercase tracking-tighter">
-                    <span>5.5% <small class="font-normal text-xs">ABV</small></span>
-                    <span>10 <small class="font-normal text-xs">IBU</small></span>
-                </div>
-            </div>
-        </div>
+        {% if beer.abv or beer.ibu %}
+          <div class="flex gap-3 mt-2 text-sm font-bold text-gray-500 uppercase tracking-tighter">
+            {% if beer.abv %}
+              <span>
+                {{ beer.abv }}
+                <small class="font-normal text-xs">ABV</small>
+              </span>
+            {% endif %}
+
+            {% if beer.ibu %}
+              <span>
+                {{ beer.ibu }}
+                <small class="font-normal text-xs">IBU</small>
+              </span>
+            {% endif %}
+          </div>
+        {% endif %}
+      </div>
+
+    </div>
+  {% endfor %}
+</div>
+    
 
     </div>
 
