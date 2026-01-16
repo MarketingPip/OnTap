@@ -291,7 +291,7 @@ class TemplateManager {
     return select.outerHTML;
   }
 
-  static async loadTemplate(templateName) {
+  static async loadTemplate(templateName, templateData={}) {
     console.log("trying");
     const errorElement = DOM.getElement('#templateError');
     errorElement?.classList.add('hidden');
@@ -308,14 +308,12 @@ class TemplateManager {
       tempDiv.innerHTML = htmlContent;
 
       // Validate version
-      const versionElement = tempDiv.querySelector('version-number');
-      if (!versionElement) {
+      const templateVersion = templateData
+      if (!templateVersion) {
         throw new Error('Version number not found in template.');
       }
-
-      const versionNumber = versionElement.textContent.trim();
-      if (versionNumber !== CONFIG.VERSION) {
-        throw new Error(`Invalid version: ${versionNumber}. Expected: ${CONFIG.VERSION}`);
+      if (templateVersion !== CONFIG.VERSION) {
+        throw new Error(`Invalid version: ${templateVersion}. Expected: ${CONFIG.VERSION}`);
       }
 
       versionElement.remove();
@@ -477,7 +475,7 @@ class MenuManager {
           
           appState.setBeerMenu(importedData);
           
-          const template = await TemplateManager.loadTemplate(templateName);
+          const template = await TemplateManager.loadTemplate(templateName, importedData);
           await this.renderMenu(template);
           
           resolve();
