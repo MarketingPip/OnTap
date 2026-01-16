@@ -305,6 +305,7 @@ class TemplateManager {
       tempDiv.innerHTML = htmlContent;
 
       let templateData = parseFrontMatter(htmlContent.trim()); // must be trimmed.
+      console.log(templateData);
       templateData = templateData.attributes || {};
       // Validate version
       const templateVersion = templateData?.version
