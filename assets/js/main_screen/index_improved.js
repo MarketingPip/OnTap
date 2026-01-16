@@ -700,8 +700,13 @@ export class EventHandlers {
       </div>
     `;
 
-    modalManager.open('Load Menu', modalContent);
 
+      const loadBtn = document.querySelector('.import-menu');
+    loadBtn?.removeEventListener('click', () => this.handleLoadMenu());
+    
+    modalManager.open('Load Menu', modalContent);
+ 
+   loadBtn?.addEventListener('click', () => this.handleLoadMenu());
    
   }
 
