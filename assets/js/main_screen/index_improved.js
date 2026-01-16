@@ -316,8 +316,7 @@ class TemplateManager {
         throw new Error(`Invalid version: ${templateVersion}. Expected: ${CONFIG.VERSION}`);
       }
 
-      versionElement.remove();
-
+ 
       // Extract and store scripts
       tempDiv.querySelectorAll('script').forEach(script => {
         const scriptInfo = {
