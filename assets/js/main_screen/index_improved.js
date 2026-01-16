@@ -86,9 +86,7 @@ export const JekyllRenderer = {
       const rawString = templateRaw.trim();
 
       // 2. Parse Front Matter 
-      // Some ESM builds require fm.default(rawString), others fm(rawString)
-      const parse = typeof fm === 'function' ? fm : fm.default;
-      const content = parse(rawString);
+      const content = parseFrontMatter(rawString);
       
       // 3. Prepare the context
       // We explicitly map content.attributes to 'page' to match Jekyll behavior
@@ -291,8 +289,7 @@ class TemplateManager {
     return select.outerHTML;
   }
 
-  static async loadTemplate(templateName, templateData={}) {
-    console.log("trying");
+  static async loadTemplate(templateName) {
     const errorElement = DOM.getElement('#templateError');
     errorElement?.classList.add('hidden');
 
@@ -307,8 +304,10 @@ class TemplateManager {
       const tempDiv = document.createElement('div');
       tempDiv.innerHTML = htmlContent;
 
+      let templateData = parseFrontMatter(htmlContent);
+      templateData = templateData.attributes || {};
       // Validate version
-      const templateVersion = templateData
+      const templateVersion = templateData?.version
       if (!templateVersion) {
         throw new Error('Version number not found in template.');
       }
@@ -462,6 +461,12 @@ class MenuValidator {
 // Menu Import/Export
 // ============================================================================
 
+function parseFrontMatter(rawString){
+   const parse = typeof fm === 'function' ? fm : fm.default;
+   const content = parse(rawString);
+   return content
+}
+
 class MenuManager {
   static async importMenu(file, templateName) {
     return new Promise((resolve, reject) => {
@@ -475,7 +480,7 @@ class MenuManager {
           
           appState.setBeerMenu(importedData);
           
-          const template = await TemplateManager.loadTemplate(templateName, importedData);
+          const template = await TemplateManager.loadTemplate(templateName);
           await this.renderMenu(template);
           
           resolve();
