@@ -25,20 +25,37 @@ margin-left:0px;
 </div>
 <div class="content">
 <ol class="beer-list">
-<!-- Beer items will be added here dynamically -->
-        {{#beers}}
-<li class="beer">
-      <div class="beer__name">{{name}}</div>
-  <div class="beer__labels">
-     {{#abv}} <div class="beer__label beer__abv">{{abv}} ABV</div> {{/abv}}
-    {{#ibu}} <div class="beer__label beer__ibu">{{ibu}} IBU</div> {{/ibu}}
-    {{#price}} <div class="beer__label beer__style">{{price}}</div> {{/price}}
-  </div>
-      <img class="beer__img" src="{{imageSrc}}" title="{{nameDisplay}}" alt="{{nameDisplay}}">
-    </li>
+  {% for beer in beers %}
+    <li class="beer">
+      <div class="beer__name">{{ beer.name }}</div>
 
-{{/beers}}
-  </ol>
+      {% if beer.abv or beer.ibu or beer.price %}
+        <div class="beer__labels">
+          {% if beer.abv %}
+            <div class="beer__label beer__abv">{{ beer.abv }} ABV</div>
+          {% endif %}
+
+          {% if beer.ibu %}
+            <div class="beer__label beer__ibu">{{ beer.ibu }} IBU</div>
+          {% endif %}
+
+          {% if beer.price %}
+            <div class="beer__label beer__style">{{ beer.price }}</div>
+          {% endif %}
+        </div>
+      {% endif %}
+
+      {% if beer.imageSrc %}
+        <img
+          class="beer__img"
+          src="{{ beer.imageSrc }}"
+          title="{{ beer.nameDisplay | default: beer.name }}"
+          alt="{{ beer.nameDisplay | default: beer.name }}"
+        >
+      {% endif %}
+    </li>
+  {% endfor %}
+</ol>
 </div>
 </div>
 <script src="./Beer Goggles/bubbles.js"></script>
