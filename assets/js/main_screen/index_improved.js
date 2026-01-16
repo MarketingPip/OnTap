@@ -305,6 +305,7 @@ class TemplateManager {
       tempDiv.innerHTML = htmlContent;
 
       let templateData = parseFrontMatter(htmlContent);
+      console.log(templateData);
       templateData = templateData.attributes || {};
       // Validate version
       const templateVersion = templateData?.version
